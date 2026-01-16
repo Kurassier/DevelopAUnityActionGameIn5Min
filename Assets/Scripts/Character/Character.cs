@@ -10,6 +10,9 @@ public class Character : MonoBehaviour
     //是否加入单位统计
     public bool countByManager = true;
 
+    //组件
+    [PropertyOrder(5)] public CharacterMove moveComponent;
+
     //————————阵营————————
     [ShowInInspector] Faction faction;
     public Faction Faction { get => faction; }
@@ -80,11 +83,11 @@ public class Character : MonoBehaviour
     {
         get
         {
-            return Rigidbody.velocity / TimeScale;
+            return moveComponent.Velocity / TimeScale;
         }
         set
         {
-            Rigidbody.velocity = value * TimeScale;
+            moveComponent.Velocity = value * TimeScale;
         }
     }
 
@@ -284,6 +287,12 @@ public class Character : MonoBehaviour
             turnDelay.Set(delay);
         }
     }
+
+    public virtual void ForceMove(Displacement displacement)
+    {
+        moveComponent.SetForcedMove(displacement);
+    }
+
     public bool HasLineOfSight(Character target)
     {
         Vector2 direction;

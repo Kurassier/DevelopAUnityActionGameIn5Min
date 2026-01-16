@@ -32,6 +32,7 @@ public class DisplacementData : ScriptableObject
     }
 }
 
+[System.Serializable]
 public class Displacement
 {
     public float maxSpeed;

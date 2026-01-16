@@ -7,8 +7,8 @@ public class Player : Character
 {
     public InputData input;
     [PropertyOrder(5)] public InputManager inputManager;
-    [PropertyOrder(5)] public PlayerMove moveComponent;
     [PropertyOrder(5)] public PlayerJump jumpComponent;
+    [PropertyOrder(5)] public PlayerDash dashComponent;
 
 
     //Æ½Ì¨´©Ô½
@@ -38,6 +38,7 @@ public class Player : Character
         inputManager.RefreshUpdate();
 
         jumpComponent.RefreshUpdate();
+        dashComponent.RefreshUpdate();
     }
 
     protected override void FixedUpdate()
@@ -46,6 +47,7 @@ public class Player : Character
 
         jumpComponent.RefreshFixedUpdate();
         moveComponent.RefreshFixedUpdate();
+        dashComponent.RefreshFixedUpdate();
 
         RefreshPlatformPenetrate();
     }

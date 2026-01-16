@@ -20,7 +20,7 @@ public class InputManager : PlayerComponent
         {
             if (horizontalMoveLastFrame == -1)
             {
-                if(!Input.GetKey(KeyCode.D))
+                if (!Input.GetKey(KeyCode.D))
                     horizontalMoveLastFrame = 0;
                 else
                     horizontalMoveLastFrame = 1;
@@ -47,6 +47,8 @@ public class InputManager : PlayerComponent
 
         //¶¯×÷ÊäÈë
         input.jump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W);
+        input.jumpDown = Input.GetKeyDown(KeyCode.S);
+        input.dash = Input.GetKeyDown(KeyCode.LeftShift);
     }
 }
 
@@ -56,5 +58,7 @@ public class InputData
     public int horizontalMove;
     public bool isMoving;
     public bool jump;
+    public bool jumpDown;
+    public bool dash;
     public bool attack;
 }

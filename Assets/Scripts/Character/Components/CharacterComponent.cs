@@ -14,7 +14,6 @@ public class CharacterComponent : MonoBehaviour
             return owner;
         }
     }
-    protected virtual Rigidbody2D Rigidbody => Owner.Rigidbody;
 
 
     public float TimeScale => Owner.TimeScale;
