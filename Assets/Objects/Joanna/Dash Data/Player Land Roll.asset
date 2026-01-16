@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f29952c7ecd36f439992fe9cadd49ed, type: 3}
+  m_Name: Player Land Roll
+  m_EditorClassIdentifier: 
+  length: 0.7
+  maxSpeed: 8
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0013908154
+      value: 0.9984277
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.22547157
+      value: 0.9686158
+      inSlope: -0.27521658
+      outSlope: -0.27521658
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.71704054
+    - serializedVersion: 3
+      time: 0.6064131
+      value: 0.005788167
+      inSlope: -0.5019092
+      outSlope: -0.5019092
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18552123
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

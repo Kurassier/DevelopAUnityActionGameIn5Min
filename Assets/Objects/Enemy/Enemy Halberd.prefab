@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3411478129836413969
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 311457715576033028, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e000ac1672e457c4b9708a38bf916e32, type: 2}
+    - target: {fileID: 320588987744622874, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: hitPoint
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 320588987744622874, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: isHalberd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 320588987744622874, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: moveSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 320588987744622874, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: attackTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 320588987744622874, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: attackRangeMax
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 926536439807520416, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123430904656432196, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_Name
+      value: Enemy Halberd
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367877285651349810, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 539d36d4e4a5bc2478a82dff14fc7947, type: 3}
+    - target: {fileID: 7367877285651349810, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8663224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367877285651349810, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8907335
+      objectReference: {fileID: 0}
+    - target: {fileID: 7367877285651349810, guid: e75c561880723ec42a087788cd015d23, type: 3}
+      propertyPath: m_Color.r
+      value: 0.98742133
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e75c561880723ec42a087788cd015d23, type: 3}

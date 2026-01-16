@@ -1,0 +1,440 @@
+fileFormatVersion: 2
+guid: 7b1e6377a69c70c42ac5ba2d9a7eed83
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4962139506180202537
+    second: Skeleton Fly Dead_0
+  - first:
+      213: -5253307369734050042
+    second: Skeleton Fly Dead_1
+  - first:
+      213: -6308453831154059078
+    second: Skeleton Fly Dead_2
+  - first:
+      213: -581540791922643695
+    second: Skeleton Fly Dead_3
+  - first:
+      213: 6800293969036088589
+    second: Skeleton Fly Dead_4
+  - first:
+      213: 3159374552275512117
+    second: Skeleton Fly Dead_5
+  - first:
+      213: 209519967182987151
+    second: Skeleton Fly Dead_6
+  - first:
+      213: -996040324538491279
+    second: Skeleton Fly Dead_7
+  - first:
+      213: 7561472281045276079
+    second: Skeleton Fly Dead_8
+  - first:
+      213: -6533936060877568457
+    second: Skeleton Fly Dead_9
+  - first:
+      213: 5768989518383020466
+    second: Skeleton Fly Dead_10
+  - first:
+      213: 5194578953623847592
+    second: Skeleton Fly Dead_11
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5894579, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 920adcf179f0dd440800000000000000
+      internalID: 4962139506180202537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5263112, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60f6f0bc7c08817b0800000000000000
+      internalID: -5253307369734050042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.50000024, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab83c180aaed378a0800000000000000
+      internalID: -6308453831154059078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.46316478, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11d2d0b1bb3fde7f0800000000000000
+      internalID: -581540791922643695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_4
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.49473825, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0590a8d55f7f5e50800000000000000
+      internalID: 6800293969036088589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_5
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.53683674, y: 0.40000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b6acc8a6a58db20800000000000000
+      internalID: 3159374552275512117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_6
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5578852, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f1b41dc4d58e200800000000000000
+      internalID: 209519967182987151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_7
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.58945924, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e1be12a9a5d22f0800000000000000
+      internalID: -996040324538491279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_8
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.60524493, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa59aaa2afebfe860800000000000000
+      internalID: 7561472281045276079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_9
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.6496592, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 736074a55cbc255a0800000000000000
+      internalID: -6533936060877568457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_10
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.7075918, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9fb2cc6619f0050800000000000000
+      internalID: 5768989518383020466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton Fly Dead_11
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 2
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.736558, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a24878490ad61840800000000000000
+      internalID: 5194578953623847592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Skeleton Fly Dead_0: 4962139506180202537
+      Skeleton Fly Dead_1: -5253307369734050042
+      Skeleton Fly Dead_10: 5768989518383020466
+      Skeleton Fly Dead_11: 5194578953623847592
+      Skeleton Fly Dead_2: -6308453831154059078
+      Skeleton Fly Dead_3: -581540791922643695
+      Skeleton Fly Dead_4: 6800293969036088589
+      Skeleton Fly Dead_5: 3159374552275512117
+      Skeleton Fly Dead_6: 209519967182987151
+      Skeleton Fly Dead_7: -996040324538491279
+      Skeleton Fly Dead_8: 7561472281045276079
+      Skeleton Fly Dead_9: -6533936060877568457
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

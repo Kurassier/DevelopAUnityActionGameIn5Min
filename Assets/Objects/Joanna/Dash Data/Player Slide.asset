@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f29952c7ecd36f439992fe9cadd49ed, type: 3}
+  m_Name: Player Slide
+  m_EditorClassIdentifier: 
+  length: 0.5
+  maxSpeed: 18
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.017425328
+      value: 0.19911148
+      inSlope: 7.088458
+      outSlope: 7.088458
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.17746934
+    - serializedVersion: 3
+      time: 0.122899346
+      value: 0.96581817
+      inSlope: -0.03967009
+      outSlope: -0.03967009
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.41573194
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.49996692
+      value: -0.0046774577
+      inSlope: -0.5019092
+      outSlope: -0.5019092
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18552123
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
