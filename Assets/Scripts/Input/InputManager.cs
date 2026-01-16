@@ -10,7 +10,8 @@ public class InputManager : PlayerComponent
     public override void RefreshUpdate()
     {
 
-        //水平移动输入
+        //————————水平移动输入————————
+        //AD键同时按下时，以最后按下的键为准，保证玩家移动不停顿
         if (Input.GetKeyDown(KeyCode.A))
         {
             horizontalMoveLastFrame = -1;
@@ -40,7 +41,9 @@ public class InputManager : PlayerComponent
             }
         }
         input.horizontalMove = horizontalMoveLastFrame;
+        //————————水平移动输入————————
 
+        input.horizontalMove = (int)Input.GetAxisRaw("Horizontal");
 
         //动作输入
         input.jump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W);
