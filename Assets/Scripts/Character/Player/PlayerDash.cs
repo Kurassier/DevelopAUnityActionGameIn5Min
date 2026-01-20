@@ -34,10 +34,14 @@ public class PlayerDash : PlayerComponent
         //动作屏蔽
         Owner.AddIgnore(DashCD, ActionIgnoreTag.Dash);
         Owner.AddIgnore(0.2f, ActionIgnoreTag.All);
-        Owner.AddIgnore(0.25f, ActionIgnoreTag.Move);
+        Owner.AddIgnore(0.2f, ActionIgnoreTag.Move);
 
         //播放动画
-        Owner.Animator.Play("Slide", 0, 0);
+        if (Owner.characterState.isOnGround)
+            Owner.Animator.Play("Slide", 0, 0);
+        else
+            Owner.Animator.Play("Dash", 0, 0);
+
 
         //强制移动
         Owner.ForceMove(displacementData);

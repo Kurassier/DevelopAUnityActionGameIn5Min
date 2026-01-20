@@ -20,10 +20,19 @@ public class PlayerMove : CharacterMove
         //强制移动相关代码在CharacterMove中处理
         base.RefreshFixedUpdate();
 
-        if (IsForcedMoving)
-            return;
         if (Owner.IsIgnore(ActionIgnoreTag.Move))
             return;
+
+
+        //碰墙时不能继续朝墙的方向移动
+        if (Owner.IsFacingWall && Owner.Direction * input.horizontalMove > 0)
+            input.horizontalMove = 0;
+
+        //如果有普通移动，则打断强制位移
+        if (input.horizontalMove != 0 && IsForcedMoving)
+        {
+            QuitForcedMoving();
+        }
 
         Vector2 velocity = Owner.Velocity;
         int moveInput = input.horizontalMove;

@@ -31,5 +31,15 @@ public class PlayerStateSensor : CharacterStateSensor
 
         Owner.characterState.isTouchingPlatform = platformSensor.IsTouchingLayers(LayerMask.GetMask("Platform"));
     }
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        if (platformSensor != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(platformSensor.bounds.center, platformSensor.bounds.size);
+        }
+    }
 }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player Dash
   m_EditorClassIdentifier: 
   maxSpeed: 25
-  length: 0.2
+  length: 0.4
   speedCurve:
     serializedVersion: 2
     m_Curve:
@@ -27,13 +27,13 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.99830186
-      value: 0.49344718
-      inSlope: -0.116341844
-      outSlope: -0.116341844
+      time: 0.99825895
+      value: 0.23414016
+      inSlope: 0.022076169
+      outSlope: 0.022076169
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.27638546
+      inWeight: 0.22076996
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

@@ -86,11 +86,11 @@ public class Player : Character
         platformPenetrateTimer -= FixedFrameInterval;
         if (platformPenetrateTimer > 0)
             canPenetrate = true;
-        //速度朝上时，允许穿透所有平台（必须当前状态下允许穿越）
-        if (Rigidbody.velocity.y > 1f && CanPenetratePlatform)
+        //速度朝上时，允许穿透所有平台
+        if (Rigidbody.velocity.y > 1f)
             canPenetrate = true;
-        //Move Collider与平台相交时，始终允许穿越平台
-        //（即使当前不可穿越，若Platform Sensor检测到平台，意味着前方而非下方出现平台，则仍然可穿越）
+        //Platform Sensor与平台相交时，始终允许穿越平台
+        //（若Platform Sensor检测到平台，意味着前方而非下方出现平台，则可以穿越）
         if (characterState.isTouchingPlatform)
             canPenetrate = true;
 

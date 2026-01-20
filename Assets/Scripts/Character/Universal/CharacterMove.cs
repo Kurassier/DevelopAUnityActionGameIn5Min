@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterMove : CharacterComponent
 {
     protected bool IsForcedMoving => currentDisplacement != null;
+    public void QuitForcedMoving() => currentDisplacement = null;
     protected Displacement currentDisplacement = null;
     protected float currentDisplacementProgress = 0;
 
@@ -26,6 +27,9 @@ public class CharacterMove : CharacterComponent
         currentDisplacement = displacement;
         currentDisplacementProgress = 0;
 
+        //Vector2 velocity = Owner.Velocity;
+        //velocity.y = 0;
+        //Owner.Velocity = velocity;
     }
 
     // 每帧更新位移逻辑
@@ -52,7 +56,7 @@ public class CharacterMove : CharacterComponent
             // 更新刚体的水平速度
             velocity.x = Owner.Direction * currentDisplacement.maxSpeed * speedFactor;
 
-            //一般来说，垂直速度都需要置为空
+            //一般来说，只有禁止普通移动，才需要将垂直速置为空
             velocity.y = 0;
 
             Owner.Rigidbody.velocity = velocity * TimeScale; // 应用新的速度

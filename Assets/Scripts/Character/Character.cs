@@ -338,4 +338,18 @@ public class Character : MonoBehaviour
         float x = position.x - ChestPosition.x;
         return x * Direction < 0;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (moveCollider != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(moveCollider.bounds.center, moveCollider.bounds.size * 0.99f);
+        }
+        if (hitCollider != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(hitCollider.bounds.center, hitCollider.bounds.size * 0.98f);
+        }
+    }
 }

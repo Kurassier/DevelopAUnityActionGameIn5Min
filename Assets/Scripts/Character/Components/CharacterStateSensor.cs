@@ -71,7 +71,19 @@ public class CharacterStateSensor : CharacterComponent
         Owner.characterState.isOnGround = Physics2D.IsTouchingLayers(groundProbe, LayerMask.GetMask("Ground", "Platform"));
     }
 
-
+    protected virtual void OnDrawGizmos()
+    {
+        if (groundProbe != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireCube(groundProbe.bounds.center, groundProbe.bounds.size);
+        }
+        if (wallProbe != null)
+        {
+            Gizmos.color = Color.yellow; 
+            Gizmos.DrawWireCube(wallProbe.bounds.center, wallProbe.bounds.size);
+        }
+    }
 
 }
 

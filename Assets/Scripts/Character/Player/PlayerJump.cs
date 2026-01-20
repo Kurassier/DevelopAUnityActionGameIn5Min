@@ -62,6 +62,12 @@ public class PlayerJump : PlayerComponent
         Owner.AddIgnore(JumpCD, ActionIgnoreTag.Jump);
         Owner.AddIgnore(0.2f, ActionIgnoreTag.All);
 
+        //动画（浮空状态）
+        Owner.Animator.Play("Jump Up", 0, 0);
+
+        //退出强制移动
+        Owner.moveComponent.QuitForcedMoving();
+
         //穿越平台
         Owner.SetPlatformPenetrateTime(0.1f);
 
