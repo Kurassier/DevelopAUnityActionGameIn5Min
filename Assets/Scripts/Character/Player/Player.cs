@@ -11,8 +11,6 @@ public class Player : Character
     [PropertyOrder(5)] public PlayerDash dashComponent;
 
 
-    //平台穿越
-    float platformPenetrateTimer;
 
 
 
@@ -59,7 +57,7 @@ public class Player : Character
         {
             return moveCollider.gameObject.layer == LayerMask.NameToLayer("CharacterIgnorePlatform");
         }
-        set
+        protected set
         {
             if (value)
             {
@@ -72,6 +70,8 @@ public class Player : Character
         }
     }
 
+    //平台穿越
+    float platformPenetrateTimer;
     public void SetPlatformPenetrateTime(float time)
     {
         platformPenetrateTimer = time;
@@ -90,7 +90,6 @@ public class Player : Character
         if (Rigidbody.velocity.y > 1f)
             canPenetrate = true;
         //Platform Sensor与平台相交时，始终允许穿越平台
-        //（若Platform Sensor检测到平台，意味着前方而非下方出现平台，则可以穿越）
         if (characterState.isTouchingPlatform)
             canPenetrate = true;
 
