@@ -11,8 +11,10 @@ public class PlayerJump : PlayerComponent
     const float GravityFloat = 40f;
     const float GravityFall = 70f;
     const float MaxFallilngSpeed = 20;
+    const float GroundLeaveTolerance = 0.2f;
 
 
+    float groundLeaveTimer = -1;
     float jumpPreinput = -1f;
     float jumpDownPreinput = -1f;
     bool isOnGroundLastFrame = false;
@@ -35,7 +37,12 @@ public class PlayerJump : PlayerComponent
     {
         VerticalMove();
 
-        if (jumpPreinput > 0f && !Owner.IsIgnore(ActionIgnoreTag.Jump) && Owner.IsOnGround)
+        //¿ÎµÿøÌ»›
+        groundLeaveTimer -= FrameInterval;
+        if (Owner.characterState.isOnGround)
+            groundLeaveTimer = 0.2f;
+
+        if (jumpPreinput > 0f && !Owner.IsIgnore(ActionIgnoreTag.Jump) && groundLeaveTimer > 0)
         {
             jumpPreinput = -1f;
             Jump();
@@ -101,7 +108,7 @@ public class PlayerJump : PlayerComponent
     }
 
     void VerticalMove()
-    {       
+    {
 
         Vector2 velocity = Owner.Velocity;
 
@@ -126,7 +133,7 @@ public class PlayerJump : PlayerComponent
         Owner.Velocity = velocity;
 
         //∂Øª≠£®∏°ø’◊¥Ã¨£©
-        Owner.Animator.SetBool("Is On Ground", Owner.IsOnGround);
+        Owner.Animator.SetBool("Is On Ground", Owner.characterState.isOnGround);
         Owner.Animator.SetBool("Is Move Up", velocity.y > 0);
 
         //≈–∂œ «∑Ò¿Îµÿ

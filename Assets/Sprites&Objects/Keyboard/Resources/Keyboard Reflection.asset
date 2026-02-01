@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4cab084ab6e3564ab821c38886e088a, type: 3}
+  m_Name: Keyboard Reflection
+  m_EditorClassIdentifier: 
+  keysAlpha:
+  - {fileID: 21300000, guid: bb8a64f4eaf40784d8848e99a30f5546, type: 3}
+  - {fileID: 21300000, guid: 5a9ab81b92520434dbd93d462e02fed7, type: 3}
+  - {fileID: 21300000, guid: d116d2772df70b442a91ecd1ed5918de, type: 3}
+  - {fileID: 21300000, guid: c325b5e37e5eee74ab848e1e1713bc67, type: 3}
+  - {fileID: 21300000, guid: 066fc8777622a944e96be8aa342e17d3, type: 3}
+  - {fileID: 21300000, guid: d82767292cd63b548bbb9f301db32407, type: 3}
+  - {fileID: 21300000, guid: c9316505135d45841b48555d9feb7d1d, type: 3}
+  - {fileID: 21300000, guid: 2209cdfc51977a54591816ac1f1e943d, type: 3}
+  - {fileID: 21300000, guid: dea115917f97c144fbe0f3bde26b9fb6, type: 3}
+  - {fileID: 21300000, guid: 8a6f0cb4ce1dd2c4ea98df4e1ad72fb6, type: 3}
+  keysAlphaDown:
+  - {fileID: 21300000, guid: faecdb1aeb710ee44add4957f4710770, type: 3}
+  - {fileID: 21300000, guid: 9654db811d724794ab98896ac6f03f5b, type: 3}
+  - {fileID: 21300000, guid: 26e9a52b6151d444f94d162441489e81, type: 3}
+  - {fileID: 21300000, guid: 3e207ab9a71496b4b94fca1a20b129c7, type: 3}
+  - {fileID: 21300000, guid: f2017c200fb03db4b86fa7af898ac0b3, type: 3}
+  - {fileID: 21300000, guid: 5f6aa2473e50c9945967fc255756b1ed, type: 3}
+  - {fileID: 21300000, guid: c907179f3ddd6894e8cb4adf6d1a5f4e, type: 3}
+  - {fileID: 21300000, guid: 533c9e1867c43754bb31324cef602753, type: 3}
+  - {fileID: 21300000, guid: 311ddf1c078f38340a25d5fb487a77cf, type: 3}
+  - {fileID: 21300000, guid: 123ce9449a7115b4fb903b73d7ef4274, type: 3}
+  keysLetter:
+  - {fileID: 21300000, guid: 4121fa8aa5414204bb1caadd6c68b8e0, type: 3}
+  - {fileID: 21300000, guid: d81ef1c63cdaae44db01ac717078f051, type: 3}
+  - {fileID: 21300000, guid: 334a47f5feeaeda4bb99fd840f023e29, type: 3}
+  - {fileID: 21300000, guid: 213c001c8ff5e974bb28a20c12cc8186, type: 3}
+  - {fileID: 21300000, guid: 1631e54c4b0a2cf4287a3159d60e291b, type: 3}
+  - {fileID: 21300000, guid: 31987a79535f61349a6748d2feff18e0, type: 3}
+  - {fileID: 21300000, guid: ee30dd1fdae6db543b3e6a62e4ff4acd, type: 3}
+  - {fileID: 21300000, guid: 644f4f2f683d5dd409227c987b87071a, type: 3}
+  - {fileID: 21300000, guid: 1359b8b11d3797043835a006042a8a8f, type: 3}
+  - {fileID: 21300000, guid: 33035cda6ed78994290a390a68c4fd32, type: 3}
+  - {fileID: 21300000, guid: f68d3b15a0d98b34fb6f3682e1df58b1, type: 3}
+  - {fileID: 21300000, guid: 943dd1c5cd54b704e8b0ab9e7daff590, type: 3}
+  - {fileID: 21300000, guid: 9198e4c159297bf4c856f101a7618613, type: 3}
+  - {fileID: 21300000, guid: d11e522bd7d88aa478c6c98b3814a4e0, type: 3}
+  - {fileID: 21300000, guid: 0cf772f49c0bef4409a344ac028c1556, type: 3}
+  - {fileID: 21300000, guid: 60587c24369ecda43b483ae3651d5b5f, type: 3}
+  - {fileID: 21300000, guid: 8a1551fe247da5f4aa0b60ee56eec1ce, type: 3}
+  - {fileID: 21300000, guid: a2a0e9f1cadb1ca4583e969fa77e0e47, type: 3}
+  - {fileID: 21300000, guid: 385c33092ea96614ea46502dd7607369, type: 3}
+  - {fileID: 21300000, guid: 8bfa0227adc7f534ea0276892d156b5c, type: 3}
+  - {fileID: 21300000, guid: 5fae78b2b419e03449b74c3112f33713, type: 3}
+  - {fileID: 21300000, guid: 73d6e95d3c413914f84107686fe1ad2d, type: 3}
+  - {fileID: 21300000, guid: cac804a2e86799545b28c8b66568c660, type: 3}
+  - {fileID: 21300000, guid: 6c25f6b91ac330841a32a7100551cc52, type: 3}
+  - {fileID: 21300000, guid: f6eab54417b9c474ca04f05fb56e144f, type: 3}
+  - {fileID: 21300000, guid: 3b865dbd46bc5194882137eb61a78ef3, type: 3}
+  keysLetterDown:
+  - {fileID: 21300000, guid: 76e9f1a5148cd5845b8de0714f1eec06, type: 3}
+  - {fileID: 21300000, guid: e9e151e6caf16384fa92a148c8c8c751, type: 3}
+  - {fileID: 21300000, guid: 620a5fc2e415d73419a990f358446d99, type: 3}
+  - {fileID: 21300000, guid: ffc8d8fe7794ee34794aeeb073a2c217, type: 3}
+  - {fileID: 21300000, guid: 27f3b2451bcc341408160e20cd949e94, type: 3}
+  - {fileID: 21300000, guid: 17fb2599518b649459a7193e3bb98a9d, type: 3}
+  - {fileID: 21300000, guid: 488badcbe6b5f8d49bdebbcf073e8118, type: 3}
+  - {fileID: 21300000, guid: 50c4f187924013143b8ae9a633856630, type: 3}
+  - {fileID: 21300000, guid: 81f8dabd47b56e44890ba63d35ec514c, type: 3}
+  - {fileID: 21300000, guid: d191cddf9baac1842a2f3fa7f64bde18, type: 3}
+  - {fileID: 21300000, guid: 7f3c8e6b03ac28f4495bf8a7bdf009d2, type: 3}
+  - {fileID: 21300000, guid: 04570b1cfba27224facafe960e6015e7, type: 3}
+  - {fileID: 21300000, guid: fba90424854e4b042ba16c097f438522, type: 3}
+  - {fileID: 21300000, guid: 9eb74714f93fba542a4cf8a9ce2b4762, type: 3}
+  - {fileID: 21300000, guid: 5fe795e9942b8894f843e1b608f1127a, type: 3}
+  - {fileID: 21300000, guid: 3eef4814c79a8124fb00ceea6c131f47, type: 3}
+  - {fileID: 21300000, guid: 5b1ffe55cdfdc194b8732838df925cfe, type: 3}
+  - {fileID: 21300000, guid: b9113505dc7893c45993cbf397cdd7d2, type: 3}
+  - {fileID: 21300000, guid: 734dc956346f0bd4db72a424259b8fc0, type: 3}
+  - {fileID: 21300000, guid: e39d44360f530554a9f70a4cdd621fe0, type: 3}
+  - {fileID: 21300000, guid: 514083c41bccdbe46ad5b541f63887f2, type: 3}
+  - {fileID: 21300000, guid: 9e198d00dad7e294ebe9cbdef32e26ba, type: 3}
+  - {fileID: 21300000, guid: 41a51d9e06c63b641a82bc74950bb29b, type: 3}
+  - {fileID: 21300000, guid: f4ac94985db13a24dacc066a1281fc92, type: 3}
+  - {fileID: 21300000, guid: 02fcb2a4fb021fe4dba8bad0222fc1fb, type: 3}
+  - {fileID: 21300000, guid: 29597d78f1842474e8e46f8a5a208f6d, type: 3}
+  keyShift: {fileID: 21300000, guid: 5b649b4005c0c284495d488462f4b46a, type: 3}
+  keyShiftDown: {fileID: 21300000, guid: 0dab10264a23163429d3977a28350ecd, type: 3}
+  keyCtrl: {fileID: 21300000, guid: d59b50e11c71cd140bfb1ed6437493d9, type: 3}
+  keyCtrlDown: {fileID: 21300000, guid: ecd1374121e0e564dbc7d0efc73c8922, type: 3}
+  keySpace: {fileID: 21300000, guid: a4c32144ea737a3418618a0693fe2c74, type: 3}
+  keySpaceDown: {fileID: 21300000, guid: 737a38e6b42a4d146bb0a1a151b1a012, type: 3}
+  keyMouse0: {fileID: 21300000, guid: 1569221c5b4c6a94f90911451497fb85, type: 3}
+  keyMouse0Down: {fileID: 21300000, guid: b1cba5fe40ddbde49847aef5a87bff11, type: 3}
+  keyMouse1: {fileID: 21300000, guid: d6c3aa1c8a0f9de42b2db2dcae855ac3, type: 3}
+  keyMouse1Down: {fileID: 21300000, guid: 54314d16052759a4a95171c6e6693c02, type: 3}

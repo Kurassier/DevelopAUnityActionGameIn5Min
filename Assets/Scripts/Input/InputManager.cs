@@ -43,7 +43,6 @@ public class InputManager : PlayerComponent
         input.horizontalMove = horizontalMoveLastFrame;
         //————————水平移动输入————————
 
-        input.horizontalMove = (int)Input.GetAxisRaw("Horizontal");
 
         //动作输入
         input.jump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W);
