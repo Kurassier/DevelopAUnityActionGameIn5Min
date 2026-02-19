@@ -6,7 +6,7 @@ public class PlayerDash : PlayerComponent
 {
     const float DashCD = 0.3f;
 
-    public DisplacementData displacementData;
+    public Displacement displacementData;
 
     float dashPreinput = -1f;
 

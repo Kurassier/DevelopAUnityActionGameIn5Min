@@ -48,6 +48,8 @@ public class InputManager : PlayerComponent
         input.jump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W);
         input.jumpDown = Input.GetKeyDown(KeyCode.S);
         input.dash = Input.GetKeyDown(KeyCode.LeftShift);
+        input.attackLight = Input.GetKeyDown(KeyCode.Mouse0);
+        input.attackHeavy = Input.GetKey(KeyCode.Mouse0);
     }
 }
 
@@ -59,5 +61,6 @@ public class InputData
     public bool jump;
     public bool jumpDown;
     public bool dash;
-    public bool attack;
+    public bool attackLight;
+    public bool attackHeavy;
 }

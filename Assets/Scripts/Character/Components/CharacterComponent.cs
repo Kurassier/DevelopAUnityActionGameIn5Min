@@ -25,6 +25,6 @@ public class CharacterComponent : MonoBehaviour
     public virtual void Init() { }
     public virtual void RefreshUpdate() { }
     public virtual void RefreshFixedUpdate() { }
-
+    public virtual void Interrupt() { }
 
 }

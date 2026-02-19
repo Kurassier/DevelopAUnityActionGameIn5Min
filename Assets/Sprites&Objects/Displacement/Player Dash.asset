@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba419af8b7fc2454f96bfb8c1dcf0c73, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d345eff5c2a70244ad0e6c4befb6e1f, type: 3}
   m_Name: Player Dash
   m_EditorClassIdentifier: 
-  maxSpeed: 25
+  maxSpeed: 28
   length: 0.4
   speedCurve:
     serializedVersion: 2

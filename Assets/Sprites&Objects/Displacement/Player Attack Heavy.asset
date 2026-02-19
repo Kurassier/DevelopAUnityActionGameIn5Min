@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d345eff5c2a70244ad0e6c4befb6e1f, type: 3}
+  m_Name: Player Attack Heavy
+  m_EditorClassIdentifier: 
+  maxSpeed: 19
+  length: 0.9
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.08466432
+      value: -0.018101044
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.29451913
+      value: 1.0121737
+      inSlope: -0.0936087
+      outSlope: -0.0936087
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.39937314
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.35365248
+      value: 0.16745609
+      inSlope: -2.024353
+      outSlope: -2.024353
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.32287523
+    - serializedVersion: 3
+      time: 0.69944704
+      value: -0.024569005
+      inSlope: -0.13366981
+      outSlope: -0.13366981
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5359384
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.772212
+      value: -0.359976
+      inSlope: -0.048301395
+      outSlope: -0.048301395
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.50114805
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.86145514
+      value: -0.017358452
+      inSlope: 0.022076169
+      outSlope: 0.022076169
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22076996
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

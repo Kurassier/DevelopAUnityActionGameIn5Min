@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class Player : Character
 {
+    public static Player Instance { get; private set; }
+
     public InputData input;
     [PropertyOrder(5)] public InputManager inputManager;
     [PropertyOrder(5)] public PlayerJump jumpComponent;
     [PropertyOrder(5)] public PlayerDash dashComponent;
+    [PropertyOrder(5)] public PlayerAttack attackComponent;
 
 
 
@@ -17,6 +20,10 @@ public class Player : Character
     protected override void Awake()
     {
         base.Awake();
+
+        if (Instance != null)
+            Destroy(Instance.gameObject);
+        Instance = this;
 
         //≥ı ºªØ
         input = new InputData();
@@ -27,6 +34,11 @@ public class Player : Character
     protected override void Start()
     {
         base.Start();
+
+        moveComponent.Init();
+        jumpComponent.Init();
+        dashComponent.Init();
+        attackComponent.Init();
     }
 
     protected override void Update()
@@ -37,6 +49,13 @@ public class Player : Character
 
         jumpComponent.RefreshUpdate();
         dashComponent.RefreshUpdate();
+        attackComponent.RefreshUpdate();
+    }
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate();
+
     }
 
     protected override void FixedUpdate()
@@ -46,8 +65,13 @@ public class Player : Character
         jumpComponent.RefreshFixedUpdate();
         moveComponent.RefreshFixedUpdate();
         dashComponent.RefreshFixedUpdate();
+        attackComponent.RefreshFixedUpdate();
 
         RefreshPlatformPenetrate();
+    }
+    public override void Interrupt()
+    {
+        base.Interrupt();
     }
 
     [ShowInInspector]

@@ -4,28 +4,61 @@ using UnityEngine;
 
 public class HitboxMelee : Hitbox
 {
+
+    #region 常量数据
+    //是否跟随发射者
+    public bool isFollowOwner = false;
+    //跟随时间
+    public float followTime = -1;
+    //生效前摇
+    public float damagePoint = 0;
+    //生效时长
+    public float effectTime = 0.5f;
+    #endregion
+
+    //生效时间计时器
+    float effectTimer = 0;
     //停止跟随计时器
-    Timer endFollowTimer;
+    float endFollowTimer;
     //所有的子碰撞体，用于实现形状复杂的组合碰撞体
     Collider2D[] colliders;
 
 
-    private void Start()
+    protected override void Init()
     {
+        base.Init();
         colliders = GetComponentsInChildren<Collider2D>();
+        //是否跟随发起者
+        if (isFollowOwner)
+            transform.parent = origin.transform;
         if (followTime > 0)
-            endFollowTimer = new Timer(followTime, TimerType.fixedDelta, null, EndAttach);
+            endFollowTimer = followTime;
     }
 
-    void EndAttach()
+    protected override void FixedUpdate()
     {
-        transform.parent = null;
+        base.FixedUpdate();
+        //追随计时器
+        endFollowTimer -= Time.fixedDeltaTime;
+        if (endFollowTimer < 0)
+            transform.parent = null;
+        //开关碰撞体（无实际作用，仅方便查看合适伤害生效）
+        foreach (Collider2D collider in colliders)
+            collider.enabled = !(effectTimer < damagePoint || effectTimer > damagePoint + effectTime);
     }
 
-    protected virtual List<Character> CollideCheck()
+
+
+    protected override List<iDamagable> CollideCheck()
     {
+        List<iDamagable> hit = new List<iDamagable>();
+
+        //生效时间检测
+        effectTimer += Time.fixedDeltaTime;
+        if (effectTimer < damagePoint || effectTimer > damagePoint + effectTime)
+            return hit;
+
         List<Collider2D> result = new List<Collider2D>();
-        List<Character> hit = new List<Character>();
         ContactFilter2D filter = new ContactFilter2D();
         //filter.SetLayerMask(LayerMask.GetMask("Character", "Ground", "Wall"));
         //对所属的每一个碰撞体都要做检测
@@ -42,12 +75,12 @@ public class HitboxMelee : Hitbox
                 {
                     //判断是否属于某个角色
 
-                    Character character = collider.GetComponentInParent<Character>();
-                    if (character != null)
+                    iDamagable damagable = collider.GetComponentInParent<iDamagable>();
+                    if (damagable != null)
                     {
-                        if (targetFaction.Contains(character.Faction))
+                        if (targetFaction.Contains(damagable.Faction))
                         {
-                            hit.Add(character);
+                            hit.Add(damagable);
                         }
                     }
 
@@ -79,10 +112,11 @@ public class HitboxMelee : Hitbox
         foreach (iDamagable target in hitTargets)
         {
             //近战需要检测LOS，若中间被Wall或Ground挡住，则不算命中
-            //if (!target.HasLineOfSight(origin)) continue;
+            if (!target.HitboxCenter.HasNoDamageObstacle(origin.ChestPosition)) continue;
 
-            HitResult result = Hit(target, remainDamage);
-            remainDamage -= result;
+            HitResult result = Hit(target, damage);
+            //对所有敌人造成相同伤害
+            //remainDamage -= result.damageAbsorb;
             if (result.hitResultType == HitResultType.Blocked)
             {
                 type = HitResultType.Blocked;
@@ -91,16 +125,6 @@ public class HitboxMelee : Hitbox
 
                 break;
             }
-            if (remainDamage <= 0)
-            {
-                type = HitResultType.Stucked;
-                break;
-            }
-        }
-        //如果消耗完了所有剩余伤害
-        if (remainDamage <= 0)
-        {
-            Stucked(type);
         }
     }
 }

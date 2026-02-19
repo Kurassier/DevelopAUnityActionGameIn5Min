@@ -94,7 +94,7 @@ MonoBehaviour:
   keyCtrlDown: {fileID: 21300000, guid: ecd1374121e0e564dbc7d0efc73c8922, type: 3}
   keySpace: {fileID: 21300000, guid: a4c32144ea737a3418618a0693fe2c74, type: 3}
   keySpaceDown: {fileID: 21300000, guid: 737a38e6b42a4d146bb0a1a151b1a012, type: 3}
-  keyMouse0: {fileID: 21300000, guid: 1569221c5b4c6a94f90911451497fb85, type: 3}
-  keyMouse0Down: {fileID: 21300000, guid: b1cba5fe40ddbde49847aef5a87bff11, type: 3}
-  keyMouse1: {fileID: 21300000, guid: d6c3aa1c8a0f9de42b2db2dcae855ac3, type: 3}
-  keyMouse1Down: {fileID: 21300000, guid: 54314d16052759a4a95171c6e6693c02, type: 3}
+  keyMouse0: {fileID: 21300000, guid: 24d9c85f88a8d7d4e9325706e8b3af28, type: 3}
+  keyMouse0Down: {fileID: 21300000, guid: 1139190432ea94848a3b18f7c5204d11, type: 3}
+  keyMouse1: {fileID: 21300000, guid: 341794f899b4c6c49ad620537474b8d2, type: 3}
+  keyMouse1Down: {fileID: 21300000, guid: d97112048d8e2bd4daecbf7967e64044, type: 3}

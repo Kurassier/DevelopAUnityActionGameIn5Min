@@ -6,9 +6,9 @@ public class HitboxExplosion : Hitbox
 {
     public string sound = "Enemy_Grenade_Explode";
 
-    protected override void Awake()
+    protected override void Init()
     {
-        base.Awake();
+        base.Init();
     }
 
     protected override List<iDamagable> CollideCheck()
@@ -16,7 +16,7 @@ public class HitboxExplosion : Hitbox
         List<iDamagable> hit = base.CollideCheck();
         for (int i = hit.Count - 1; i >= 0; i--)
         {
-            if (!hit[i].HasLineOfSight(transform.position))
+            if (!hit[i].HitboxCenter.HasNoDamageObstacle(transform.position))
             {
                 hit.RemoveAt(i);
             }
@@ -39,15 +39,13 @@ public class HitboxExplosion : Hitbox
         HitResultType type = HitResultType.Stucked;
         foreach (iDamagable target in hitTargets)
         {
-            HitResult result = Hit(target, remainDamage);
+            HitResult result = Hit(target, damage);
             //爆炸伤害可以被格挡抵消，但是不能保护身后单位，也不会弹刀
             if (result.hitResultType == HitResultType.Blocked)
             {
                 type = HitResultType.Blocked;
             }
         }
-
-        //爆炸伤害永远不会卡刀
 
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-[CreateAssetMenu(fileName = "New Reflection Data", menuName = "Datas/ReflectionData")]
+[CreateAssetMenu(fileName = "New Reflection Data", menuName = "Datas/Reflection Data")]
 public class GameobjectReflectionData : ScriptableObject
 {
     public string key = "None";

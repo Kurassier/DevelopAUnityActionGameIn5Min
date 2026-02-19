@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d345eff5c2a70244ad0e6c4befb6e1f, type: 3}
+  m_Name: Player Attack Light
+  m_EditorClassIdentifier: 
+  maxSpeed: 17
+  length: 0.5
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0020914832
+      value: -0.2235067
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.058734193
+      value: 0.020718988
+      inSlope: 0.08006807
+      outSlope: 0.08006807
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4186516
+    - serializedVersion: 3
+      time: 0.34535778
+      value: 0.016183238
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.46923128
+      value: 1.0283185
+      inSlope: 0.23793212
+      outSlope: 0.23793212
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.39937314
+      outWeight: 0.37894157
+    - serializedVersion: 3
+      time: 0.7841283
+      value: 0.018943463
+      inSlope: 0.022076169
+      outSlope: 0.022076169
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22076996
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

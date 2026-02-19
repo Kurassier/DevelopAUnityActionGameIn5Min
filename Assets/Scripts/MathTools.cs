@@ -120,6 +120,15 @@ public static class MathTools
     {
         return !float.IsNaN(vector.x) && !float.IsNaN(vector.y) && !float.IsNaN(vector.z);
     }
+    public static bool HasNoDamageObstacle(this Vector2 from, Vector2 target)
+    {
+        Vector2 direction;
+        bool hasLOS = false;
+        direction = target - from;
+        hasLOS |= !Physics2D.Raycast(from, direction.normalized, direction.magnitude,
+            LayerMaskPreset.DamageObstacle);
 
+        return hasLOS;
+    }
 
 }

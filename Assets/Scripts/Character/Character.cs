@@ -5,16 +5,17 @@ using Sirenix.OdinInspector;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Character : MonoBehaviour
+public class Character : MonoBehaviour, iDamagable
 {
     //是否加入单位统计
     public bool countByManager = true;
 
     //组件
     [PropertyOrder(5)] public CharacterMove moveComponent;
+    [PropertyOrder(5)] public CharacterDamage damageComponent;
 
     //————————阵营————————
-    [ShowInInspector] Faction faction;
+    [SerializeField] Faction faction;
     public Faction Faction { get => faction; }
 
     //————————阵营————————
@@ -38,11 +39,26 @@ public class Character : MonoBehaviour
 
     //————————朝向————————
 
+    //————————血量————————
+    float healthMax = 10;
+    public float HealthMax { get => healthMax; }
+
+    float healthCurrent = 10;
+    public float HealthCurrent
+    {
+        get => healthCurrent;
+        set
+        {
+            healthCurrent = value;
+            if (healthCurrent > HealthMax) healthCurrent = HealthMax;
+        }
+    }
+    //————————血量————————
 
 
     //————————时间相关————————
     float localTimeScale = 1;
-    [ShowInInspector,ReadOnly]
+    [ShowInInspector, ReadOnly]
     float timeScale = 1;
     public float TimeScale
     {
@@ -227,7 +243,9 @@ public class Character : MonoBehaviour
     [ShowInInspector]
     public virtual Vector2 ChestPosition => (transform.position + new Vector3(0, 1.8f, 0));
 
-    Timer turnDelay;
+    [ShowInInspector]
+    public Vector2 HitboxCenter => ChestPosition;
+
 
     //————————位置相关————————
 
@@ -256,35 +274,60 @@ public class Character : MonoBehaviour
             UnitManager.AddUnit(this);
 
         //设置计时器
-        turnDelay = new Timer(this);
     }
 
     protected virtual void Update()
     {
 
     }
+    protected virtual void LateUpdate()
+    {
+
+    }
 
     protected virtual void FixedUpdate()
     {
+        //刷新角色动作忽略
         RefreshActionIgnore();
         //刷新角色状态
         characterStateSensor.RefreshFixedUpdate();
     }
-
-
-    //移动分区
-    public void ReverseDirection(float delay = 0) => SetDirection(-Direction, delay);
-    public virtual void SetDirection(float direction, float delay = 0)
+    public virtual void Interrupt()
     {
+        CharacterComponent[] components = GetComponentsInChildren<CharacterComponent>();
+        foreach (CharacterComponent component in components)
+        {
+            component.Interrupt();
+        }
+    }
+
+
+
+    //————————伤害分区————————
+    public HitResult Hit(Damage damage)
+    {
+        return damageComponent.Hit(damage);
+    }
+
+    //————————伤害分区————————
+
+
+    //————————移动分区————————
+    public void ReverseDirection() => SetDirection(-Direction);
+    public virtual void SetDirection(float direction)
+    {
+        //设置朝向，如果为普通的正负数，则朝向目标方向
+        //如果设置为0，则表示正在转向，不修改角色的Size
         Vector3 size = transform.localScale;
         size.x = Mathf.Abs(size.x);
         if (direction > 0) Direction = 1;
         else if (direction < 0) Direction = -1;
-        size.x *= Direction;
-        transform.localScale = size;
-        if (delay > 0)
+        else Direction = 0;
+
+        if (Direction != 0)
         {
-            turnDelay.Set(delay);
+            size.x *= Direction;
+            transform.localScale = size;
         }
     }
 
@@ -292,20 +335,25 @@ public class Character : MonoBehaviour
     {
         moveComponent.SetForcedMove(displacement);
     }
+    public virtual void QuitForceMove()
+    {
+        moveComponent.QuitForcedMoving();
+    }
+    public virtual bool ForceMoveIsEqual(Displacement displacement)
+    {
+        return moveComponent.ForceMoveIsEqual(displacement);
+    }
+
+    //————————移动分区————————
+
 
     public bool HasLineOfSight(Character target)
     {
         Vector2 direction;
         bool hasLOS = false;
-        direction = target.ChestPosition - ChestPosition;
-        hasLOS |= !Physics2D.Raycast(ChestPosition, direction.normalized, direction.magnitude,
-            UnityEngine.LayerMask.GetMask("Ground", "Wall"));
-        direction = target.ChestPosition + new Vector2(1, 0) - ChestPosition;
-        hasLOS |= !Physics2D.Raycast(ChestPosition, direction.normalized, direction.magnitude,
-            UnityEngine.LayerMask.GetMask("Ground", "Wall"));
-        direction = target.ChestPosition + new Vector2(-1, 0) - ChestPosition;
-        hasLOS |= !Physics2D.Raycast(ChestPosition, direction.normalized, direction.magnitude,
-            UnityEngine.LayerMask.GetMask("Ground", "Wall"));
+        direction = target.RootPosition - RootPosition;
+        hasLOS |= !Physics2D.Raycast(RootPosition + new Vector2(0, 0.1f), direction.normalized, direction.magnitude,
+            LayerMaskPreset.SightObstacle);
 
         return hasLOS;
     }

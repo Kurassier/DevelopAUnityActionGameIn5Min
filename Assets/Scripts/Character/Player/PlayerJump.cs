@@ -40,7 +40,7 @@ public class PlayerJump : PlayerComponent
         //ÀëµØ¿íÈÝ
         groundLeaveTimer -= FrameInterval;
         if (Owner.characterState.isOnGround)
-            groundLeaveTimer = 0.2f;
+            groundLeaveTimer = 0.1f;
 
         if (jumpPreinput > 0f && !Owner.IsIgnore(ActionIgnoreTag.Jump) && groundLeaveTimer > 0)
         {

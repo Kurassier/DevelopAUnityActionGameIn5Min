@@ -7,6 +7,18 @@ public class HitboxBullet : Hitbox
 {
 
     #region 常量数据
+    //是否是飞行物
+    public bool isProjectile = false;
+    //初速度
+    public float initialSpeed = 50;
+    //阻力系数
+    public float dragFactor = 0;
+    //最大速度
+    public float maxSpeed = 100;
+    //最小速度
+    public float minSpeed = 0;
+    //最大穿透数
+    public int penetration = 1;
     #endregion
 
     [SerializeField]
@@ -24,16 +36,13 @@ public class HitboxBullet : Hitbox
 
     protected new Rigidbody2D rigidbody;
 
-    public float originDamage = 0;
-    public int remainPenetration = 0;
-    public int originPenetraion = 0;
 
     Vector3 hitPoint = new Vector3(float.NaN, float.NaN, float.NaN);
     iDamagable hitTarget = null;
 
-    protected override void Awake()
+    protected override void Init()
     {
-        base.Awake();
+        base.Init();
         rigidbody = GetComponent<Rigidbody2D>();
 
         if (launchSmoke != null)
@@ -41,9 +50,6 @@ public class HitboxBullet : Hitbox
             GameObject smoke = Instantiate(launchSmoke, transform.position, transform.rotation, null);
             smoke.transform.localScale = new Vector3(1, 1, 1);
         }
-
-        originDamage = remainDamage;
-        originPenetraion = remainPenetration;
     }
 
     public override Vector2 ImpactDirection => rigidbody.velocity.normalized;
@@ -96,7 +102,7 @@ public class HitboxBullet : Hitbox
 
                     if (targetFaction.Contains(target.Faction))
                     {
-                        if (target.HasLineOfSight(transform.position))
+                        if (target.HitboxCenter.HasNoDamageObstacle(transform.position))
                             hit.Add(target);
 
                     }
@@ -134,9 +140,8 @@ public class HitboxBullet : Hitbox
         //射线检测的距离排序按照HitPoint的距离进行，在导入之前就已经排好了
         foreach (iDamagable target in hitTargets)
         {
-            HitResult result = Hit(target, remainDamage);
-            remainDamage -= result;
-            //Block的命中，无论剩余伤害与穿透数，都立即停止，玩家格挡子弹还会有额外的弹反判定
+            HitResult result = Hit(target, damage);
+            //Blocked的命中，无论剩余伤害与穿透数，都立即停止，玩家格挡子弹还会有额外的弹反判定
             if (result.hitResultType == HitResultType.Blocked)
             {
                 type = HitResultType.Blocked;
@@ -146,11 +151,11 @@ public class HitboxBullet : Hitbox
             }
             //Miss的命中，继续飞行
             else if (result.hitResultType == HitResultType.Miss) { }
-            //远程攻击命中，是否停止不依照剩余伤害，而是单独检验角色穿透数
+            //远程攻击的最大命中目标数，就是可以穿透的敌人数量
             else
             {
-                remainPenetration--;
-                if (remainPenetration <= 0)
+                penetration--;
+                if (penetration <= 0)
                 {
                     type = HitResultType.Stucked;
                     hitTarget = target;
@@ -158,18 +163,6 @@ public class HitboxBullet : Hitbox
                     break;
                 }
             }
-            //else if (result.hitResultType == HitResultType.Stucked)
-            //{
-            //    type = HitResultType.Stucked;
-            //    Stucked(type);
-            //    break;
-            //}
-            //else if(result.hitResultType == HitResultType.Hit)
-            //{
-            //    type = HitResultType.Stucked;
-            //    Stucked(type);
-            //    break;
-            //}
         }
 
     }
@@ -242,8 +235,9 @@ public class HitboxBullet : Hitbox
             rigidbody.drag = 0;
 
             //重置伤害值（无论初始多少，都调整为5）
-            remainDamage = 5;
-            remainPenetration = originPenetraion;
+            damage = 5;
+            //重置目标数（无论初始多少，都调整为1）
+            penetration = 1;
             //重置目标阵营
             targetFaction = Faction.enemy;
             //重置经过的碰撞体

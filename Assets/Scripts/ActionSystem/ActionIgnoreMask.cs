@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Linq;
 
-public enum ActionIgnoreTag { Move, Attack, Dash, Jump, WallSlide, Interact, All = 63 }
+public enum ActionIgnoreTag { Move, Action, Dash, Jump, Interact, All = 31 }
 
 [System.Serializable]
 public struct ActionIgnoreMask
@@ -14,18 +15,15 @@ public struct ActionIgnoreMask
     {
         ActionIgnoreMask mask = new ActionIgnoreMask();
         mask.maskValue = 0;
+        if (actionIgnores.Contains(ActionIgnoreTag.All))
+        {
+            mask.maskValue = (int)ActionIgnoreTag.All;
+            return mask;
+        }
         foreach (ActionIgnoreTag tag in actionIgnores)
         {
-            if (tag == ActionIgnoreTag.All)
-            {
-                mask.maskValue = int.MaxValue;
-                return mask;
-            }
-            else
-            {
-                int value = 1 << (int)tag;
-                mask.maskValue |= value;
-            }
+            int value = 1 << (int)tag;
+            mask.maskValue |= value;
         }
         return mask;
     }
@@ -49,8 +47,13 @@ public struct ActionIgnoreMask
 public class ActionIgnore
 {
     public ActionIgnoreMask mask;
-    [PropertyOrder(1)]
     public float timer;
+
+    public ActionIgnore(ActionIgnoreMask mask, float time)
+    {
+        this.mask = mask;
+        timer = time;
+    }
 
     [ShowInInspector, PropertyOrder(0)]
     public string MaskToString
@@ -63,24 +66,19 @@ public class ActionIgnore
                 if (mask.ContainTag(actionIgnore))
                     s += actionIgnore.ToString() + " ";
             }
-            if (mask.ContainTag(ActionIgnoreTag.All))
+            if (mask == ActionIgnoreMask.GetMask(ActionIgnoreTag.All))
                 s = "ALL";
             return s;
         }
     }
 
-    public ActionIgnore(ActionIgnoreMask mask, float time)
-    {
-        this.mask = mask;
-        timer = time;
-    }
 
     public static ActionIgnoreTag[] AllTags
     {
         get
         {
             ActionIgnoreTag[] list = new ActionIgnoreTag[] {
-                ActionIgnoreTag.Move, ActionIgnoreTag .Attack, ActionIgnoreTag .Dash, ActionIgnoreTag .Jump, ActionIgnoreTag.Interact};
+                ActionIgnoreTag.Move, ActionIgnoreTag .Action, ActionIgnoreTag .Dash, ActionIgnoreTag .Jump,  ActionIgnoreTag.Interact};
             return list;
         }
     }
