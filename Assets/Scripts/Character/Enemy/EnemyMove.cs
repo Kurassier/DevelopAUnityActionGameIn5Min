@@ -59,7 +59,7 @@ public class EnemyMove : CharacterMove
         if (velocity.x * moveInput < 0)
             velocity.x = 0;
         else
-            velocity.x = Mathf.MoveTowards(velocity.x, moveInput * moveSpeed, FrameInterval * moveAcceleration);
+            velocity.x = Mathf.MoveTowards(velocity.x, moveInput * moveSpeed * Owner.LocalTimeScale, FixedFrameInterval * moveAcceleration);
 
         //¶¯»­
         bool isMove = Mathf.Abs(velocity.x) > 0.1f || moveInput != 0;

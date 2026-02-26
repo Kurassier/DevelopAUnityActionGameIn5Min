@@ -43,6 +43,14 @@ public class Player : Character
 
     protected override void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            float scale = 3;
+            LocalTimeScale = scale;
+            TimeManager.SlowScale = 1 / scale;
+            Time.fixedDeltaTime = 1 / (60 * scale);
+        }
+
         base.Update();
 
         inputManager.RefreshUpdate();

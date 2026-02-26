@@ -25,16 +25,44 @@ public class TimeManager : Singleton<TimeManager>
     int TimerCount { get => Timers.Count; }
 
 
-    float globalTimeScale = 1;
-    public static float GlobalTimeScale
+    [SerializeField] float globalTimeScale = 1;
+    [SerializeField] float frameFreezeScale = 1;
+    [SerializeField] float pauseScale = 1;
+    [SerializeField] float slowScale = 1;
+    [SerializeField] float debugScale = 1;
+
+
+    public static void ResetScale()
+    {
+        Instance.frameFreezeScale = 1;
+        Instance.pauseScale = 1;
+        Instance.slowScale = 1;
+        Instance.debugScale = 1;
+        Instance.globalTimeScale = 1;
+    }
+    public static float GlobleTimeScale
     {
         get
         {
             return Instance.globalTimeScale;
         }
+    }
+    public static float SlowScale
+    {
+        get => Instance.slowScale;
         set
         {
-            Instance.globalTimeScale = Mathf.Clamp(value, 0.01f, 10f);
+            Instance.slowScale = value;
+            Instance.ResetGlobalScale();
+        }
+    }
+    public static float DebugScale
+    {
+        get => Instance.debugScale;
+        set
+        {
+            Instance.debugScale = value;
+            Instance.ResetGlobalScale();
         }
     }
 
@@ -79,13 +107,9 @@ public class TimeManager : Singleton<TimeManager>
     void Update()
     {
         //处理时间流速
-        float timeScale = 1;
-        if (timeScale > frameFreezeScale) timeScale = frameFreezeScale;
-        if (timeScale > debugScale) timeScale = debugScale;
-        if (timeScale > pauseScale) timeScale = pauseScale;
-        if (timeScale > slowScale) timeScale = slowScale;
-        Time.timeScale = timeScale;
+        ResetGlobalScale();
 
+        //计时器
         for (int i = timers.Count - 1; i >= 0; i--)
         {
             Timer timer = timers[i];
@@ -108,6 +132,10 @@ public class TimeManager : Singleton<TimeManager>
 
     private void FixedUpdate()
     {
+        //处理时间流速
+        ResetGlobalScale();
+
+        //计时器
         for (int i = timers.Count - 1; i >= 0; i--)
         {
             Timer timer = timers[i];
@@ -133,26 +161,28 @@ public class TimeManager : Singleton<TimeManager>
         timeFixedSinceLevelLoadAsDouble = Time.timeSinceLevelLoadAsDouble;
     }
 
-
-    public static void ResetScale()
+    void ResetGlobalScale()
     {
-        Instance.frameFreezeScale = 1;
-        Instance.pauseScale = 1;
-        Instance.slowScale = 1;
-        Instance.debugScale = 1;
+        float timeScale = 1;
+        timeScale *= slowScale;
+        timeScale *= pauseScale;
+        timeScale *= frameFreezeScale;
+        timeScale *= debugScale;
+        Time.timeScale = timeScale;
+        globalTimeScale = timeScale;
     }
 
-    [SerializeField] float frameFreezeScale = 1;
-    [SerializeField] float pauseScale = 1;
-    [SerializeField] float slowScale = 1;
-    [SerializeField] float debugScale = 1;
-
-    public static float SlowScale { get => Instance.slowScale; set => Instance.slowScale = value; }
-    public static float DebugScale { get => Instance.debugScale; set => Instance.debugScale = value; }
-
     public static bool IsPause => Instance.pauseScale == 0;
-    public static void Pause() => Instance.pauseScale = 0;
-    public static void Unpause() => Instance.pauseScale = 1;
+    public static void Pause()
+    {
+        Instance.pauseScale = 0;
+        Instance.ResetGlobalScale();
+    }
+    public static void Unpause()
+    {
+        Instance.pauseScale = 1;
+        Instance.ResetGlobalScale();
+    }
 
     //清除该销毁的计时器
     //void ClearObsoleteTimers()

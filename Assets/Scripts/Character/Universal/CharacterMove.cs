@@ -54,7 +54,7 @@ public class CharacterMove : CharacterComponent
             // 根据进度比例从速度曲线中获取速度因子
             float speedFactor = currentDisplacement.speedCurve.Evaluate(progressRate);
             // 更新刚体的水平速度
-            velocity.x = Owner.Direction * currentDisplacement.maxSpeed * speedFactor;
+            velocity.x = Owner.Direction * currentDisplacement.maxSpeed * speedFactor * Owner.LocalTimeScale;
 
             //一般来说，强制移动时不应该受到重力影响（例如空中冲刺）
             velocity.y = 0;

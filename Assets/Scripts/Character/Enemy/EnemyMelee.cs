@@ -39,7 +39,7 @@ public class EnemyMelee : EnemyAction
     protected IEnumerator AttackMeleeCorourine()
     {
         //先等待进入攻击范围
-        while (Owner.Direction == 0 || (Distance > maxAttackRange || Distance < -maxAttackRangeBack))
+        while (Owner.Direction == 0 || (Distance > maxAttackRange || Distance < -maxAttackRangeBack) || Owner.TargetPosition.y - Owner.RootPosition.y > 2f)
         {
             if (Distance < -maxAttackRangeBack / 2)
             {
@@ -52,6 +52,15 @@ public class EnemyMelee : EnemyAction
 
             //等待当前帧结束
             yield return new WaitForFixedUpdate();
+
+
+            //丢失目标，则自动退出行动
+            if(Owner.Target == null)
+            {
+                attackMeleeCorourine = null;
+                actionEndCallback();
+                yield break;
+            }
         }
 
         //进行攻击

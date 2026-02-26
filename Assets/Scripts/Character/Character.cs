@@ -57,25 +57,43 @@ public class Character : MonoBehaviour, iDamagable
 
 
     //————————时间相关————————
-    float localTimeScale = 1;
-    [ShowInInspector, ReadOnly]
-    float timeScale = 1;
+
+    //时间倍率
+    [SerializeField] float localTimeScale = 1;
+    [SerializeField, ReadOnly] float lossyTimeScale = 1;
     public float TimeScale
     {
         get
         {
-            timeScale = localTimeScale * TimeManager.GlobalTimeScale;
-            return localTimeScale * TimeManager.GlobalTimeScale;
+            lossyTimeScale = localTimeScale * TimeManager.GlobleTimeScale;
+            return lossyTimeScale;
         }
         set
         {
-            localTimeScale = value / TimeManager.GlobalTimeScale;
+            float previousTimeScale = localTimeScale;
+            localTimeScale = value / TimeManager.GlobleTimeScale;
+            Animator.speed = localTimeScale;
+            float velocityRatio = localTimeScale / previousTimeScale;
+            Velocity *= velocityRatio;
         }
     }
-    //帧间隔
-    public float FixedFrameInterval => Time.fixedDeltaTime * TimeScale;
+    public float LocalTimeScale
+    {
+        get => localTimeScale;
+        set
+        {
+            float previousTimeScale = localTimeScale;
+            localTimeScale = value;
+            Animator.speed = localTimeScale;
+            float velocityRatio = localTimeScale / previousTimeScale;
+            Velocity *= velocityRatio;
+        }
+    }
 
-    public float FrameInterval => Time.deltaTime * TimeScale;
+    //帧间隔
+    public float FixedFrameInterval => Time.fixedDeltaTime * LocalTimeScale;
+
+    public float FrameInterval => Time.deltaTime * LocalTimeScale;
 
     //————————时间相关————————
 

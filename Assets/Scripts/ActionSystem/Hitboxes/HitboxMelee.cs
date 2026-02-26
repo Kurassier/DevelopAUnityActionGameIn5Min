@@ -39,7 +39,7 @@ public class HitboxMelee : Hitbox
     {
         base.FixedUpdate();
         //追随计时器
-        endFollowTimer -= Time.fixedDeltaTime;
+        endFollowTimer -= origin == null ? Time.fixedDeltaTime : origin.FixedFrameInterval;
         if (endFollowTimer < 0)
             transform.parent = null;
         //开关碰撞体（无实际作用，仅方便查看合适伤害生效）
@@ -54,7 +54,7 @@ public class HitboxMelee : Hitbox
         List<iDamagable> hit = new List<iDamagable>();
 
         //生效时间检测
-        effectTimer += Time.fixedDeltaTime;
+        effectTimer += origin == null ? Time.fixedDeltaTime : origin.FixedFrameInterval;
         if (effectTimer < damagePoint || effectTimer > damagePoint + effectTime)
             return hit;
 

@@ -87,7 +87,7 @@ public class Hitbox : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         //销毁计时器
-        destroyTimer -= Time.fixedDeltaTime;
+        destroyTimer -= origin == null ? Time.fixedDeltaTime : origin.FixedFrameInterval;
         if (destroyTimer < 0)
             Destroy();
 

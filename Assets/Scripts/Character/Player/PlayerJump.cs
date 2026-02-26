@@ -38,7 +38,7 @@ public class PlayerJump : PlayerComponent
         VerticalMove();
 
         //离地宽容
-        groundLeaveTimer -= FrameInterval;
+        groundLeaveTimer -= FixedFrameInterval;
         if (Owner.characterState.isOnGround)
             groundLeaveTimer = 0.1f;
 
@@ -80,7 +80,7 @@ public class PlayerJump : PlayerComponent
 
         Vector2 velocity = Owner.Velocity;
 
-        velocity.y = JumpSpeed;
+        velocity.y = JumpSpeed * Owner.LocalTimeScale;
 
         Owner.Velocity = velocity;
     }
@@ -125,10 +125,10 @@ public class PlayerJump : PlayerComponent
         {
             gravity = GravityFall;
         }
-        velocity.y -= gravity * FixedFrameInterval;
+        velocity.y -= gravity * FixedFrameInterval * Owner.LocalTimeScale;
 
         //限制最大下落速度
-        velocity.y = Mathf.Max(velocity.y, -MaxFallilngSpeed);
+        velocity.y = Mathf.Max(velocity.y, -MaxFallilngSpeed * Owner.LocalTimeScale);
 
         Owner.Velocity = velocity;
 

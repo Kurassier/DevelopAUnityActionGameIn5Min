@@ -53,7 +53,7 @@ public class PlayerMove : CharacterMove
             acceleration = MoveAcceleration;
         //如果在空中，则加速度乘以折损系数
         if (!Owner.IsOnGround) acceleration *= MoveAccelerationAirFactor;
-        velocity.x = MathTools.MoveTo(velocity.x, moveInput * MoveSpeed, acceleration * FixedFrameInterval);
+        velocity.x = MathTools.MoveTo(velocity.x, moveInput * MoveSpeed * Owner.LocalTimeScale, acceleration * Owner.LocalTimeScale * FixedFrameInterval);
 
         //角色朝向
         if (moveInput != 0)
