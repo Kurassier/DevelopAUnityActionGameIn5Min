@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,7 @@ public class Damage
 
     public float impulse = 0;
     public ImpulseType impulseType = ImpulseType.Parallel;
-    //根据冲击类型，平行冲击表示方向，向心冲击表示中心位置
+    //鏍规嵁鍐插嚮绫诲瀷锛屽钩琛屽啿鍑昏〃绀烘柟鍚戯紝鍚戝績鍐插嚮琛ㄧず涓績浣嶇疆
     public Vector2 impulseVector = new Vector2();
     public ImpactType impact = ImpactType.None;
 

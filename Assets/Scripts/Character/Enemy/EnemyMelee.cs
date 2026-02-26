@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,10 +7,10 @@ using UnityEngine;
 public class EnemyMelee : EnemyAction
 {
     public GameObject attackHitbox = null;
-    public float maxAttackRange = 2;        //ÏòÇ°µÄ¹¥»÷¾àÀë
-    public float maxAttackRangeBack = 1;    //ÏòºóµÄ¹¥»÷¾àÀë
-    public float attackFullTime = 1;        //¹¥»÷¶¯×÷Ê±³¤
-    public float attackLastTracingTime = 0.25f;//¹¥»÷µÄ×îºóÒ»´Î×·×Ù
+    public float maxAttackRange = 2;        //å‘å‰çš„æ”»å‡»è·ç¦»
+    public float maxAttackRangeBack = 1;    //å‘åŽçš„æ”»å‡»è·ç¦»
+    public float attackFullTime = 1;        //æ”»å‡»åŠ¨ä½œæ—¶é•¿
+    public float attackLastTracingTime = 0.25f;//æ”»å‡»çš„æœ€åŽä¸€æ¬¡è¿½è¸ª
     public float damage = 5;
 
     [ShowInInspector]
@@ -38,7 +38,7 @@ public class EnemyMelee : EnemyAction
 
     protected IEnumerator AttackMeleeCorourine()
     {
-        //ÏÈµÈ´ý½øÈë¹¥»÷·¶Î§
+        //å…ˆç­‰å¾…è¿›å…¥æ”»å‡»èŒƒå›´
         while (Owner.Direction == 0 || (Distance > maxAttackRange || Distance < -maxAttackRangeBack) || Owner.TargetPosition.y - Owner.RootPosition.y > 2f)
         {
             if (Distance < -maxAttackRangeBack / 2)
@@ -50,11 +50,11 @@ public class EnemyMelee : EnemyAction
                 Owner.MoveState = EnemyMoveState.Chase;
             }
 
-            //µÈ´ýµ±Ç°Ö¡½áÊø
+            //ç­‰å¾…å½“å‰å¸§ç»“æŸ
             yield return new WaitForFixedUpdate();
 
 
-            //¶ªÊ§Ä¿±ê£¬Ôò×Ô¶¯ÍË³öÐÐ¶¯
+            //ä¸¢å¤±ç›®æ ‡ï¼Œåˆ™è‡ªåŠ¨é€€å‡ºè¡ŒåŠ¨
             if(Owner.Target == null)
             {
                 attackMeleeCorourine = null;
@@ -63,34 +63,34 @@ public class EnemyMelee : EnemyAction
             }
         }
 
-        //½øÐÐ¹¥»÷
+        //è¿›è¡Œæ”»å‡»
         {
             Debug.Log("Enemy Attack");
 
-            //Í£Ö¹ÒÆ¶¯
+            //åœæ­¢ç§»åŠ¨
             Owner.MoveState = EnemyMoveState.Hold;
             Owner.Velocity = Vector2.zero;
 
-            //¶¯×÷ÆÁ±Î
+            //åŠ¨ä½œå±è”½
             Owner.AddIgnore(attackFullTime, ActionIgnoreTag.All);
 
-            //¶¯»­²¥·Å
+            //åŠ¨ç”»æ’­æ”¾
             Owner.Animator.Play("Attack", 0, 0);
 
-            //Éú³É¹¥»÷Åö×²Ìå
+            //ç”Ÿæˆæ”»å‡»ç¢°æ’žä½“
             attackHitboxCurrrnt = Hitbox.GenerateHitbox(attackHitbox, Owner, transform, damage, Owner.RootPosition);
 
-            //×îºóÒ»´Î×·×ÙÍæ¼ÒÎ»ÖÃ
+            //æœ€åŽä¸€æ¬¡è¿½è¸ªçŽ©å®¶ä½ç½®
             yield return new WaitForSeconds(attackLastTracingTime);
             if (Distance < 0)
                 Owner.ReverseDirection();
 
-            //µÈ´ý¶¯×÷½áÊø
+            //ç­‰å¾…åŠ¨ä½œç»“æŸ
             yield return new WaitForSeconds(attackFullTime - attackLastTracingTime);
         }
 
         attackMeleeCorourine = null;
-        //»Øµ÷º¯Êý
+        //å›žè°ƒå‡½æ•°
         actionEndCallback();
 
         Debug.Log("Attack End");

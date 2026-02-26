@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -17,7 +17,7 @@ public class CharacterComponent : MonoBehaviour
 
 
     public float TimeScale => Owner.TimeScale;
-    //Ö¡¼ä¸ô
+    //å¸§é—´éš”
     public float FixedFrameInterval => Owner.FixedFrameInterval;
 
     public float FrameInterval => Owner.FrameInterval;

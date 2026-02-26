@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,25 +33,25 @@ public class PlayerAttack : PlayerComponent
     {
         base.RefreshFixedUpdate();
 
-        //¹¥»÷Ô¤ÊäÈë±È½ÏÌØÊâ£¬°´ÕÕÓÎÏ·Ê±³¤¼ÆËã£¬²»ÊÜÊ±¼äËÙ¶ÈÓ°Ïì£¬Ö÷ÒªÊÇÎªÁË×öÁ¬¶Î
+        //æ”»å‡»é¢„è¾“å…¥æ¯”è¾ƒç‰¹æ®Šï¼ŒæŒ‰ç…§æ¸¸æˆæ—¶é•¿è®¡ç®—ï¼Œä¸å—æ—¶é—´é€Ÿåº¦å½±å“ï¼Œä¸»è¦æ˜¯ä¸ºäº†åšè¿æ®µ
         attackPreinput -= FixedFrameInterval;
-        //¹¥»÷¶¯×÷¼ÆÊ±Æ÷£¬Ö÷ÒªÊÇÎªÁËÔÚ¹¥»÷¶¯×÷ÖĞ±£´æÁ¬¶ÎºÍÖØ»÷ĞîÁ¦Ê±³¤
+        //æ”»å‡»åŠ¨ä½œè®¡æ—¶å™¨ï¼Œä¸»è¦æ˜¯ä¸ºäº†åœ¨æ”»å‡»åŠ¨ä½œä¸­ä¿å­˜è¿æ®µå’Œé‡å‡»è“„åŠ›æ—¶é•¿
         attackActionTimer -= FixedFrameInterval;
 
-        //½ÇÉ«µØÃæºÍ¿ÕÖĞ¹¥»÷ĞèÒªÍêÈ«·Ö¿ª
-        // ½ÇÉ«ÔÚµØÃæ
+        //è§’è‰²åœ°é¢å’Œç©ºä¸­æ”»å‡»éœ€è¦å®Œå…¨åˆ†å¼€
+        // è§’è‰²åœ¨åœ°é¢
         if (Owner.IsOnGround)
         {
-            //Èç¹ûÃ»ÓĞÆÁ±Î¹¥»÷¶¯×÷
+            //å¦‚æœæ²¡æœ‰å±è”½æ”»å‡»åŠ¨ä½œ
             if (!Owner.IsIgnore(ActionIgnoreTag.Action))
             {
-                //Çá»÷ÅĞ¶¨
+                //è½»å‡»åˆ¤å®š
                 if (attackPreinput > 0)
                 {
                     attackPreinput = 0;
                     AttackLight();
                 }
-                //ÖØ»÷ĞîÁ¦¼ÆÊ±
+                //é‡å‡»è“„åŠ›è®¡æ—¶
                 if (input.attackHeavy)
                 {
                     attackHeavyChargeTimer += FixedFrameInterval;
@@ -64,16 +64,16 @@ public class PlayerAttack : PlayerComponent
                 {
                     attackHeavyChargeTimer = 0;
                 }
-                //Á¬¶ÎÖØÖÃ
+                //è¿æ®µé‡ç½®
                 if (attackActionTimer <= 0)
                 {
                     attackLightCombo = 0;
                 }
             }
-            //Èç¹ûÆÁ±Î¹¥»÷¶¯×÷£¨ÔÚÆäËû¶¯×÷ÖĞ£¬Ò²¿ÉÄÜÊÇ¹¥»÷¶¯×÷£©
+            //å¦‚æœå±è”½æ”»å‡»åŠ¨ä½œï¼ˆåœ¨å…¶ä»–åŠ¨ä½œä¸­ï¼Œä¹Ÿå¯èƒ½æ˜¯æ”»å‡»åŠ¨ä½œï¼‰
             else
             {
-                //Èç¹û²»ÔÚ¹¥»÷¶¯×÷ÖĞ£¬ÖØÖÃÁ¬¶ÎºÍÖØ»÷ĞîÁ¦¼ÆÊ±Æ÷
+                //å¦‚æœä¸åœ¨æ”»å‡»åŠ¨ä½œä¸­ï¼Œé‡ç½®è¿æ®µå’Œé‡å‡»è“„åŠ›è®¡æ—¶å™¨
                 if (attackActionTimer <= 0)
                 {
                     attackLightCombo = 0;
@@ -81,7 +81,7 @@ public class PlayerAttack : PlayerComponent
                 }
                 else
                 {
-                    //ÖØ»÷ĞîÁ¦¼ÆÊ±
+                    //é‡å‡»è“„åŠ›è®¡æ—¶
                     if (input.attackHeavy)
                         attackHeavyChargeTimer += FixedFrameInterval;
                     else
@@ -89,10 +89,10 @@ public class PlayerAttack : PlayerComponent
                 }
             }
         }
-        // ½ÇÉ«ÔÚ¿ÕÖĞ
+        // è§’è‰²åœ¨ç©ºä¸­
         else
         {
-            //ÔÚ¿ÕÖĞ»á´ò¶Ï¹¥»÷¶¯»­£¬²¢ÇÒÍË³ö¹¥»÷Î»ÒÆ
+            //åœ¨ç©ºä¸­ä¼šæ‰“æ–­æ”»å‡»åŠ¨ç”»ï¼Œå¹¶ä¸”é€€å‡ºæ”»å‡»ä½ç§»
             if (attackActionTimer > 0)
             {
                 attackActionTimer = 0;
@@ -112,7 +112,7 @@ public class PlayerAttack : PlayerComponent
         if (input.attackLight)
         {
             attackPreinput = 0.2f;
-            //¹¥»÷¶¯×÷ÖĞµÄÁ¬¶ÎÅĞ¶¨¼Ó³¤
+            //æ”»å‡»åŠ¨ä½œä¸­çš„è¿æ®µåˆ¤å®šåŠ é•¿
             if (attackActionTimer > 0)
                 attackPreinput = 0.5f;
         }
@@ -129,39 +129,39 @@ public class PlayerAttack : PlayerComponent
     {
         //Debug.Log("Attack Light");
 
-        //¶¯×÷ÆÁ±Î
+        //åŠ¨ä½œå±è”½
         Owner.AddIgnore(0.5f, ActionIgnoreTag.All);
 
-        //¶¯»­²¥·Å
+        //åŠ¨ç”»æ’­æ”¾
         string attackAnimName = "Attack L" + (attackLightCombo % 2 + 1);
         Owner.Animator.Play(attackAnimName, 0, 0);
 
-        //Ç¿ÖÆÒÆ¶¯
+        //å¼ºåˆ¶ç§»åŠ¨
         Owner.ForceMove(attackLightDisplacement);
 
-        //Æô¶¯¹¥»÷³ÖĞø¼ÆÊ±Æ÷£¬ÔÚ´ËÆÚ¼ä±£´æÁ¬¶ÎºÍÖØ»÷ĞîÁ¦Ê±³¤
+        //å¯åŠ¨æ”»å‡»æŒç»­è®¡æ—¶å™¨ï¼Œåœ¨æ­¤æœŸé—´ä¿å­˜è¿æ®µå’Œé‡å‡»è“„åŠ›æ—¶é•¿
         attackActionTimer = 1.0f;
 
-        //Éú³É¹¥»÷Åö×²Ìå
+        //ç”Ÿæˆæ”»å‡»ç¢°æ’ä½“
         attackHitboxCurrrnt = Hitbox.GenerateHitbox(attackLightHitbox, Owner, transform, 5, Owner.RootPosition);
 
-        //Á¬¶ÎÔö¼Ó
+        //è¿æ®µå¢åŠ 
         attackLightCombo++;
     }
 
     void AttackHeavy()
     {
-        //¶¯×÷ÆÁ±Î
+        //åŠ¨ä½œå±è”½
         Owner.AddIgnore(0.9f, ActionIgnoreTag.All);
 
-        //¶¯»­²¥·Å
+        //åŠ¨ç”»æ’­æ”¾
         string attackAnimName = "Attack H";
         Owner.Animator.Play(attackAnimName, 0, 0);
 
-        //Ç¿ÖÆÒÆ¶¯
+        //å¼ºåˆ¶ç§»åŠ¨
         Owner.ForceMove(attackHeavyDisplacement);
 
-        //Éú³É¹¥»÷Åö×²Ìå
+        //ç”Ÿæˆæ”»å‡»ç¢°æ’ä½“
         attackHitboxCurrrnt = Hitbox.GenerateHitbox(attackHeavyHitbox, Owner, transform, 5, Owner.RootPosition);
     }
 }

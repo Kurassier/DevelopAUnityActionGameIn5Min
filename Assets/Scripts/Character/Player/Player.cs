@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +25,7 @@ public class Player : Character
             Destroy(Instance.gameObject);
         Instance = this;
 
-        //³õÊ¼»¯
+        //åˆå§‹åŒ–
         input = new InputData();
         platformPenetrateTimer = -1;
     }
@@ -102,7 +102,7 @@ public class Player : Character
         }
     }
 
-    //Æ½Ì¨´©Ô½
+    //å¹³å°ç©¿è¶Š
     float platformPenetrateTimer;
     public void SetPlatformPenetrateTime(float time)
     {
@@ -110,18 +110,18 @@ public class Player : Character
         CanPenetratePlatform = true;
     }
 
-    //Æ½Ì¨´©Ô½
+    //å¹³å°ç©¿è¶Š
     void RefreshPlatformPenetrate()
     {
         bool canPenetrate = false;
-        //Ç¿ÖÆ´©Ô½¼ÆÊ±Æ÷£¬ÔÚ¼ÆÊ±Æ÷ÄÚÔÊĞí´©Í¸ËùÓĞÆ½Ì¨
+        //å¼ºåˆ¶ç©¿è¶Šè®¡æ—¶å™¨ï¼Œåœ¨è®¡æ—¶å™¨å†…å…è®¸ç©¿é€æ‰€æœ‰å¹³å°
         platformPenetrateTimer -= FixedFrameInterval;
         if (platformPenetrateTimer > 0)
             canPenetrate = true;
-        //ËÙ¶È³¯ÉÏÊ±£¬ÔÊĞí´©Í¸ËùÓĞÆ½Ì¨
+        //é€Ÿåº¦æœä¸Šæ—¶ï¼Œå…è®¸ç©¿é€æ‰€æœ‰å¹³å°
         if (Rigidbody.velocity.y > 1f)
             canPenetrate = true;
-        //Platform SensorÓëÆ½Ì¨Ïà½»Ê±£¬Ê¼ÖÕÔÊĞí´©Ô½Æ½Ì¨
+        //Platform Sensorä¸å¹³å°ç›¸äº¤æ—¶ï¼Œå§‹ç»ˆå…è®¸ç©¿è¶Šå¹³å°
         if (characterState.isTouchingPlatform)
             canPenetrate = true;
 

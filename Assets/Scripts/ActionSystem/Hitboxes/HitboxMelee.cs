@@ -1,26 +1,26 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HitboxMelee : Hitbox
 {
 
-    #region ³£Á¿Êı¾İ
-    //ÊÇ·ñ¸úËæ·¢ÉäÕß
+    #region å¸¸é‡æ•°æ®
+    //æ˜¯å¦è·Ÿéšå‘å°„è€…
     public bool isFollowOwner = false;
-    //¸úËæÊ±¼ä
+    //è·Ÿéšæ—¶é—´
     public float followTime = -1;
-    //ÉúĞ§Ç°Ò¡
+    //ç”Ÿæ•ˆå‰æ‘‡
     public float damagePoint = 0;
-    //ÉúĞ§Ê±³¤
+    //ç”Ÿæ•ˆæ—¶é•¿
     public float effectTime = 0.5f;
     #endregion
 
-    //ÉúĞ§Ê±¼ä¼ÆÊ±Æ÷
+    //ç”Ÿæ•ˆæ—¶é—´è®¡æ—¶å™¨
     float effectTimer = 0;
-    //Í£Ö¹¸úËæ¼ÆÊ±Æ÷
+    //åœæ­¢è·Ÿéšè®¡æ—¶å™¨
     float endFollowTimer;
-    //ËùÓĞµÄ×ÓÅö×²Ìå£¬ÓÃÓÚÊµÏÖĞÎ×´¸´ÔÓµÄ×éºÏÅö×²Ìå
+    //æ‰€æœ‰çš„å­ç¢°æ’ä½“ï¼Œç”¨äºå®ç°å½¢çŠ¶å¤æ‚çš„ç»„åˆç¢°æ’ä½“
     Collider2D[] colliders;
 
 
@@ -28,7 +28,7 @@ public class HitboxMelee : Hitbox
     {
         base.Init();
         colliders = GetComponentsInChildren<Collider2D>();
-        //ÊÇ·ñ¸úËæ·¢ÆğÕß
+        //æ˜¯å¦è·Ÿéšå‘èµ·è€…
         if (isFollowOwner)
             transform.parent = origin.transform;
         if (followTime > 0)
@@ -38,11 +38,11 @@ public class HitboxMelee : Hitbox
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        //×·Ëæ¼ÆÊ±Æ÷
+        //è¿½éšè®¡æ—¶å™¨
         endFollowTimer -= origin == null ? Time.fixedDeltaTime : origin.FixedFrameInterval;
         if (endFollowTimer < 0)
             transform.parent = null;
-        //¿ª¹ØÅö×²Ìå£¨ÎŞÊµ¼Ê×÷ÓÃ£¬½ö·½±ã²é¿´ºÏÊÊÉËº¦ÉúĞ§£©
+        //å¼€å…³ç¢°æ’ä½“ï¼ˆæ— å®é™…ä½œç”¨ï¼Œä»…æ–¹ä¾¿æŸ¥çœ‹åˆé€‚ä¼¤å®³ç”Ÿæ•ˆï¼‰
         foreach (Collider2D collider in colliders)
             collider.enabled = !(effectTimer < damagePoint || effectTimer > damagePoint + effectTime);
     }
@@ -53,7 +53,7 @@ public class HitboxMelee : Hitbox
     {
         List<iDamagable> hit = new List<iDamagable>();
 
-        //ÉúĞ§Ê±¼ä¼ì²â
+        //ç”Ÿæ•ˆæ—¶é—´æ£€æµ‹
         effectTimer += origin == null ? Time.fixedDeltaTime : origin.FixedFrameInterval;
         if (effectTimer < damagePoint || effectTimer > damagePoint + effectTime)
             return hit;
@@ -61,7 +61,7 @@ public class HitboxMelee : Hitbox
         List<Collider2D> result = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
         //filter.SetLayerMask(LayerMask.GetMask("Character", "Ground", "Wall"));
-        //¶ÔËùÊôµÄÃ¿Ò»¸öÅö×²Ìå¶¼Òª×ö¼ì²â
+        //å¯¹æ‰€å±çš„æ¯ä¸€ä¸ªç¢°æ’ä½“éƒ½è¦åšæ£€æµ‹
         foreach (Collider2D childCollider in colliders)
         {
             if (!childCollider.isTrigger) continue;
@@ -70,10 +70,10 @@ public class HitboxMelee : Hitbox
             int count = childCollider.OverlapCollider(filter, result);
             foreach (Collider2D collider in result)
             {
-                //ÒÑ¾­½áËã¹ıÅö×²µÄÅö×²Ìå²»ÔÙÖØĞÂ½áËã
+                //å·²ç»ç»“ç®—è¿‡ç¢°æ’çš„ç¢°æ’ä½“ä¸å†é‡æ–°ç»“ç®—
                 if (!touchedColliders.Contains(collider))
                 {
-                    //ÅĞ¶ÏÊÇ·ñÊôÓÚÄ³¸ö½ÇÉ«
+                    //åˆ¤æ–­æ˜¯å¦å±äºæŸä¸ªè§’è‰²
 
                     iDamagable damagable = collider.GetComponentInParent<iDamagable>();
                     if (damagable != null)
@@ -94,7 +94,7 @@ public class HitboxMelee : Hitbox
     {
         HitResult result = base.Hit(target, remainDamage);
 
-        //ÃüÖĞÌØĞ§Ö»²¥Ò»´Î
+        //å‘½ä¸­ç‰¹æ•ˆåªæ’­ä¸€æ¬¡
         if (!isHit && result.hitResultType != HitResultType.Miss)
         {
             PlayHitEffect();
@@ -105,22 +105,22 @@ public class HitboxMelee : Hitbox
     protected override void HitResultCheck(List<iDamagable> hitTargets)
     {
 
-        //ÒÀ´Î½áËãÃüÖĞ
+        //ä¾æ¬¡ç»“ç®—å‘½ä¸­
         HitResultType type = HitResultType.Stucked;
         //
         //hitTargets.Sort((x, y) => (x.ChestPosition - (Vector2)transform.position).magnitude.CompareTo((y.ChestPosition - (Vector2)transform.position).magnitude));
         foreach (iDamagable target in hitTargets)
         {
-            //½üÕ½ĞèÒª¼ì²âLOS£¬ÈôÖĞ¼ä±»Wall»òGroundµ²×¡£¬Ôò²»ËãÃüÖĞ
+            //è¿‘æˆ˜éœ€è¦æ£€æµ‹LOSï¼Œè‹¥ä¸­é—´è¢«Wallæˆ–GroundæŒ¡ä½ï¼Œåˆ™ä¸ç®—å‘½ä¸­
             if (!target.HitboxCenter.HasNoDamageObstacle(origin.ChestPosition)) continue;
 
             HitResult result = Hit(target, damage);
-            //¶ÔËùÓĞµĞÈËÔì³ÉÏàÍ¬ÉËº¦
+            //å¯¹æ‰€æœ‰æ•Œäººé€ æˆç›¸åŒä¼¤å®³
             //remainDamage -= result.damageAbsorb;
             if (result.hitResultType == HitResultType.Blocked)
             {
                 type = HitResultType.Blocked;
-                //¹Ø±Õ¶¯»­»úÏÔÊ¾
+                //å…³é—­åŠ¨ç”»æœºæ˜¾ç¤º
                 GetComponentInChildren<Animator>().SetTrigger("Block");
 
                 break;

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,18 +17,18 @@ public class PlayerMove : CharacterMove
 
     public override void RefreshFixedUpdate()
     {
-        //Ç¿ÖÆÒÆ¶¯Ïà¹Ø´úÂëÔÚCharacterMoveÖĞ´¦Àí
+        //å¼ºåˆ¶ç§»åŠ¨ç›¸å…³ä»£ç åœ¨CharacterMoveä¸­å¤„ç†
         base.RefreshFixedUpdate();
 
         if (Owner.IsIgnore(ActionIgnoreTag.Move))
             return;
 
 
-        //ÅöÇ½Ê±²»ÄÜ¼ÌĞø³¯Ç½µÄ·½ÏòÒÆ¶¯
+        //ç¢°å¢™æ—¶ä¸èƒ½ç»§ç»­æœå¢™çš„æ–¹å‘ç§»åŠ¨
         if (Owner.IsFacingWall && Owner.Direction * input.horizontalMove > 0)
             input.horizontalMove = 0;
 
-        //Èç¹ûÓĞÆÕÍ¨ÒÆ¶¯£¬Ôò´ò¶ÏÇ¿ÖÆÎ»ÒÆ
+        //å¦‚æœæœ‰æ™®é€šç§»åŠ¨ï¼Œåˆ™æ‰“æ–­å¼ºåˆ¶ä½ç§»
         if (input.horizontalMove != 0 && IsForcedMoving)
         {
             QuitForcedMoving();
@@ -37,7 +37,7 @@ public class PlayerMove : CharacterMove
         Vector2 velocity = Owner.Velocity;
         int moveInput = input.horizontalMove;
 
-        //ÊÇ·ñ·´Ïò
+        //æ˜¯å¦åå‘
         bool isReversing = moveInput * Owner.Direction < 0;
         if (isReversing && Owner.IsOnGround)
         {
@@ -47,21 +47,21 @@ public class PlayerMove : CharacterMove
                 Owner.Animator.Play("RunStop");
         }
 
-        //¼ÓËÙ»ò¼õËÙ£¬µ±µ±Ç°ÒÆ¶¯·½ÏòÓëÊäÈë·½ÏòÏàÍ¬Ê±£¬Ê¹ÓÃ¼ÓËÙ¶È£¬·ñÔòÊ¹ÓÃÉ²³µ¼ÓËÙ¶È
+        //åŠ é€Ÿæˆ–å‡é€Ÿï¼Œå½“å½“å‰ç§»åŠ¨æ–¹å‘ä¸è¾“å…¥æ–¹å‘ç›¸åŒæ—¶ï¼Œä½¿ç”¨åŠ é€Ÿåº¦ï¼Œå¦åˆ™ä½¿ç”¨åˆ¹è½¦åŠ é€Ÿåº¦
         float acceleration = MoveBrake;
         if (moveInput * velocity.x > 0)
             acceleration = MoveAcceleration;
-        //Èç¹ûÔÚ¿ÕÖĞ£¬Ôò¼ÓËÙ¶È³ËÒÔÕÛËğÏµÊı
+        //å¦‚æœåœ¨ç©ºä¸­ï¼Œåˆ™åŠ é€Ÿåº¦ä¹˜ä»¥æŠ˜æŸç³»æ•°
         if (!Owner.IsOnGround) acceleration *= MoveAccelerationAirFactor;
         velocity.x = MathTools.MoveTo(velocity.x, moveInput * MoveSpeed * Owner.LocalTimeScale, acceleration * Owner.LocalTimeScale * FixedFrameInterval);
 
-        //½ÇÉ«³¯Ïò
+        //è§’è‰²æœå‘
         if (moveInput != 0)
         {
             Owner.SetDirection(moveInput);
         }
 
-        //¶¯»­
+        //åŠ¨ç”»
         bool isMove = Mathf.Abs(velocity.x) > 0.1f || moveInput != 0;
         Owner.Animator.SetBool("Is Move", isMove);
 

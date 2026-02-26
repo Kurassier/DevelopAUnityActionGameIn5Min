@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ public static class MathTools
     }
 
     /// <summary>
-    /// ½«ÊıÖµfrom³¯ÏòtoÒÆ¶¯ÖÁ¶àstep¾àÀë
+    /// å°†æ•°å€¼fromæœå‘toç§»åŠ¨è‡³å¤šstepè·ç¦»
     /// </summary>
     /// <param name="from"></param>
     /// <param name="to"></param>
@@ -32,7 +32,7 @@ public static class MathTools
         return from;
     }
     /// <summary>
-    /// ½«ÏòÁ¿from³¯ÏòtoÒÆ¶¯ÖÁ¶àstep¾àÀë
+    /// å°†å‘é‡fromæœå‘toç§»åŠ¨è‡³å¤šstepè·ç¦»
     /// </summary>
     /// <param name="from"></param>
     /// <param name="to"></param>
@@ -49,7 +49,7 @@ public static class MathTools
         return from;
     }
     /// <summary>
-    /// ½«ÏòÁ¿from³¯ÏòtoÒÆ¶¯ÖÁ¶àstep¾àÀë
+    /// å°†å‘é‡fromæœå‘toç§»åŠ¨è‡³å¤šstepè·ç¦»
     /// </summary>
     /// <param name="from"></param>
     /// <param name="to"></param>
@@ -85,7 +85,7 @@ public static class MathTools
     }
     public static Vector2Int GetMapGridPos(this Vector2 pos)
     {
-        //×ª»»ÎªÕûÊıÖ®Ç°£¬ÏÈÆ½ÒÆ2000¸öµ¥Î»£¬±ÜÃâ¶Ô¸ºÊıÈ¡Õû
+        //è½¬æ¢ä¸ºæ•´æ•°ä¹‹å‰ï¼Œå…ˆå¹³ç§»2000ä¸ªå•ä½ï¼Œé¿å…å¯¹è´Ÿæ•°å–æ•´
         int unit = 2000;
         Vector2 temp = pos + new Vector2(unit, unit);
         Vector2Int gridPos = new Vector2Int((int)(temp.x), (int)(temp.y));

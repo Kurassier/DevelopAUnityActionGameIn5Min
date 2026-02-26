@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,18 +6,18 @@ using UnityEngine;
 public class HitboxBullet : Hitbox
 {
 
-    #region ³£Á¿Êı¾İ
-    //ÊÇ·ñÊÇ·ÉĞĞÎï
+    #region å¸¸é‡æ•°æ®
+    //æ˜¯å¦æ˜¯é£è¡Œç‰©
     public bool isProjectile = false;
-    //³õËÙ¶È
+    //åˆé€Ÿåº¦
     public float initialSpeed = 50;
-    //×èÁ¦ÏµÊı
+    //é˜»åŠ›ç³»æ•°
     public float dragFactor = 0;
-    //×î´óËÙ¶È
+    //æœ€å¤§é€Ÿåº¦
     public float maxSpeed = 100;
-    //×îĞ¡ËÙ¶È
+    //æœ€å°é€Ÿåº¦
     public float minSpeed = 0;
-    //×î´ó´©Í¸Êı
+    //æœ€å¤§ç©¿é€æ•°
     public int penetration = 1;
     #endregion
 
@@ -57,14 +57,14 @@ public class HitboxBullet : Hitbox
     bool isFirstFrame = true;
     protected override List<iDamagable> CollideCheck()
     {
-        //µÚÒ»Ö¡²»ÅĞ¶¨ÉËº¦£¬²»ÖªµÀµ±Ê±ÎªÉ¶Ğ´£¬¹À¼Æ·ÀÖ¹×Ô¼º´ò×Ô¼º£¬²»¹ıËÆºõÒÑ¾­Í¨¹ıÆäËû·½·¨½â¾öÁË¸ÃÎÊÌâ
-        //·´¶ø»áµ¼ÖÂ×Óµ¯´©Ç½£¬ËùÒÔÔİÊ±½ûÓÃ£¬ÒÔºó¿´Çé¿ö
+        //ç¬¬ä¸€å¸§ä¸åˆ¤å®šä¼¤å®³ï¼Œä¸çŸ¥é“å½“æ—¶ä¸ºå•¥å†™ï¼Œä¼°è®¡é˜²æ­¢è‡ªå·±æ‰“è‡ªå·±ï¼Œä¸è¿‡ä¼¼ä¹å·²ç»é€šè¿‡å…¶ä»–æ–¹æ³•è§£å†³äº†è¯¥é—®é¢˜
+        //åè€Œä¼šå¯¼è‡´å­å¼¹ç©¿å¢™ï¼Œæ‰€ä»¥æš‚æ—¶ç¦ç”¨ï¼Œä»¥åçœ‹æƒ…å†µ
         //if (isFirstFrame)
         //{
         //    isFirstFrame = false;
         //    return new List<Character>();
         //}
-        //¼ì²âÊÇ·ñÒÑ¾­±»´İ»Ù
+        //æ£€æµ‹æ˜¯å¦å·²ç»è¢«æ‘§æ¯
         if (gameObject.layer == UnityEngine.LayerMask.NameToLayer("Debris"))
         {
             return new List<iDamagable>();
@@ -75,26 +75,26 @@ public class HitboxBullet : Hitbox
         ContactFilter2D filter = new ContactFilter2D();
         //filter.SetLayerMask(LayerMask.GetMask("Character"));
 
-        //×Óµ¯ÀàµÄ¸ÄÎªÊ¹ÓÃÉäÏß¼ì²â
+        //å­å¼¹ç±»çš„æ”¹ä¸ºä½¿ç”¨å°„çº¿æ£€æµ‹
         RaycastHit2D[] raycastHits = Physics2D.RaycastAll(transform.position, rigidbody.velocity,
             rigidbody.velocity.magnitude * Time.fixedDeltaTime * 1.0f);
 
         List<RaycastHit2D> allHits = raycastHits.ToList<RaycastHit2D>();
 
-        //ÒÀÕÕ¾àÀëÅÅĞò
+        //ä¾ç…§è·ç¦»æ’åº
         allHits.Sort((x, y) => (x.point - (Vector2)transform.position).magnitude.CompareTo((y.point - (Vector2)transform.position).magnitude));
         foreach (RaycastHit2D raycastHit in allHits)
         {
             Collider2D collider = raycastHit.collider;
-            //ÒÑ¾­½áËã¹ıÅö×²µÄÅö×²Ìå²»ÔÙÖØĞÂ½áËã
+            //å·²ç»ç»“ç®—è¿‡ç¢°æ’çš„ç¢°æ’ä½“ä¸å†é‡æ–°ç»“ç®—
             if (!touchedColliders.Contains(collider))
             {
-                //ÅĞ¶ÏÊÇ·ñÊôÓÚÄ³¸ö½ÇÉ«
+                //åˆ¤æ–­æ˜¯å¦å±äºæŸä¸ªè§’è‰²
                 bool isInvincibleCharacter = false;
                 iDamagable target = collider.GetComponentInParent<iDamagable>();
                 if (target != null)
                 {
-                    //Íæ¼ÒÖ»ÓĞPlayer²ãµÄÅö×²ÌåÓĞÉËº¦ÅĞ¶¨
+                    //ç©å®¶åªæœ‰Playerå±‚çš„ç¢°æ’ä½“æœ‰ä¼¤å®³åˆ¤å®š
                     if (target.Faction == Faction.player && collider.gameObject.layer != UnityEngine.LayerMask.NameToLayer("Player"))
                     {
                         continue;
@@ -112,14 +112,14 @@ public class HitboxBullet : Hitbox
                     isInvincibleCharacter = true;
                 }
 
-                //ÅĞ¶ÏÊÇ·ñÊÇµØÍ¼±ß½ç£¬»òÕßÎŞµĞµÄ½ÇÉ«
+                //åˆ¤æ–­æ˜¯å¦æ˜¯åœ°å›¾è¾¹ç•Œï¼Œæˆ–è€…æ— æ•Œçš„è§’è‰²
                 if (collider.gameObject.layer == UnityEngine.LayerMask.NameToLayer("Ground"))
                 {
-                    //ÓëµØÍ¼±ß½çÅö×²£¬Åö×²µãÒªĞŞÕıµ½½Ó´¥µã
+                    //ä¸åœ°å›¾è¾¹ç•Œç¢°æ’ï¼Œç¢°æ’ç‚¹è¦ä¿®æ­£åˆ°æ¥è§¦ç‚¹
                     hitPoint = raycastHit.point;
                     hitPoint.z = transform.position.z;
                     hitPoint += new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), 0);
-                    //Èç¹ûÊÇµØÍ¼±ß½ç£¬Ö±½ÓÖ´ĞĞStuckedÂß¼­
+                    //å¦‚æœæ˜¯åœ°å›¾è¾¹ç•Œï¼Œç›´æ¥æ‰§è¡ŒStuckedé€»è¾‘
                     Stucked(HitResultType.Stucked);
                     break;
                 }
@@ -135,13 +135,13 @@ public class HitboxBullet : Hitbox
     protected override void HitResultCheck(List<iDamagable> hitTargets)
     {
 
-        //ÒÀ´Î½áËãÃüÖĞ
+        //ä¾æ¬¡ç»“ç®—å‘½ä¸­
         HitResultType type = HitResultType.Stucked;
-        //ÉäÏß¼ì²âµÄ¾àÀëÅÅĞò°´ÕÕHitPointµÄ¾àÀë½øĞĞ£¬ÔÚµ¼ÈëÖ®Ç°¾ÍÒÑ¾­ÅÅºÃÁË
+        //å°„çº¿æ£€æµ‹çš„è·ç¦»æ’åºæŒ‰ç…§HitPointçš„è·ç¦»è¿›è¡Œï¼Œåœ¨å¯¼å…¥ä¹‹å‰å°±å·²ç»æ’å¥½äº†
         foreach (iDamagable target in hitTargets)
         {
             HitResult result = Hit(target, damage);
-            //BlockedµÄÃüÖĞ£¬ÎŞÂÛÊ£ÓàÉËº¦Óë´©Í¸Êı£¬¶¼Á¢¼´Í£Ö¹£¬Íæ¼Ò¸ñµ²×Óµ¯»¹»áÓĞ¶îÍâµÄµ¯·´ÅĞ¶¨
+            //Blockedçš„å‘½ä¸­ï¼Œæ— è®ºå‰©ä½™ä¼¤å®³ä¸ç©¿é€æ•°ï¼Œéƒ½ç«‹å³åœæ­¢ï¼Œç©å®¶æ ¼æŒ¡å­å¼¹è¿˜ä¼šæœ‰é¢å¤–çš„å¼¹ååˆ¤å®š
             if (result.hitResultType == HitResultType.Blocked)
             {
                 type = HitResultType.Blocked;
@@ -149,9 +149,9 @@ public class HitboxBullet : Hitbox
                 Stucked(type);
                 break;
             }
-            //MissµÄÃüÖĞ£¬¼ÌĞø·ÉĞĞ
+            //Missçš„å‘½ä¸­ï¼Œç»§ç»­é£è¡Œ
             else if (result.hitResultType == HitResultType.Miss) { }
-            //Ô¶³Ì¹¥»÷µÄ×î´óÃüÖĞÄ¿±êÊı£¬¾ÍÊÇ¿ÉÒÔ´©Í¸µÄµĞÈËÊıÁ¿
+            //è¿œç¨‹æ”»å‡»çš„æœ€å¤§å‘½ä¸­ç›®æ ‡æ•°ï¼Œå°±æ˜¯å¯ä»¥ç©¿é€çš„æ•Œäººæ•°é‡
             else
             {
                 penetration--;
@@ -171,8 +171,8 @@ public class HitboxBullet : Hitbox
     {
         HitResult result = base.Hit(target, remainDamage);
 
-        //ÃüÖĞÌØĞ§Ö»²¥Ò»´Î
-        //×Óµ¯±»¸ñµ²²»²¥·ÅÌØĞ§
+        //å‘½ä¸­ç‰¹æ•ˆåªæ’­ä¸€æ¬¡
+        //å­å¼¹è¢«æ ¼æŒ¡ä¸æ’­æ”¾ç‰¹æ•ˆ
         if (!isHit && result.hitResultType != HitResultType.Miss && result.hitResultType != HitResultType.Blocked)
         {
             PlayHitEffect();
@@ -191,7 +191,7 @@ public class HitboxBullet : Hitbox
 
         if (type == HitResultType.Stucked)
         {
-            //ÃüÖĞµÄ×Óµ¯´©Í¸²»·´µ¯
+            //å‘½ä¸­çš„å­å¼¹ç©¿é€ä¸åå¼¹
             velocity = velocity / 5;
             velocity.y = velocity.y / 3;
             rigidbody.AddTorque(Random.Range(-50, 50));
@@ -210,7 +210,7 @@ public class HitboxBullet : Hitbox
         {
 
 
-            //¸ñµ²µÄ×Óµ¯·´µ¯²»´©Í¸
+            //æ ¼æŒ¡çš„å­å¼¹åå¼¹ä¸ç©¿é€
             velocity = -velocity / 3;
             rigidbody.AddTorque(Random.Range(-150, 150));
 
@@ -227,26 +227,26 @@ public class HitboxBullet : Hitbox
         }
         else if (type == HitResultType.Counter)
         {
-            //ËÙ¶È·´µ¯
+            //é€Ÿåº¦åå¼¹
             rigidbody.velocity *= -bounceFactor;
-            //Ëø¶¨ËÙ¶ÈÎª80
+            //é”å®šé€Ÿåº¦ä¸º80
             rigidbody.velocity = rigidbody.velocity.normalized * 80;
-            //¹Ø±Õ×èÁ¦
+            //å…³é—­é˜»åŠ›
             rigidbody.drag = 0;
 
-            //ÖØÖÃÉËº¦Öµ£¨ÎŞÂÛ³õÊ¼¶àÉÙ£¬¶¼µ÷ÕûÎª5£©
+            //é‡ç½®ä¼¤å®³å€¼ï¼ˆæ— è®ºåˆå§‹å¤šå°‘ï¼Œéƒ½è°ƒæ•´ä¸º5ï¼‰
             damage = 5;
-            //ÖØÖÃÄ¿±êÊı£¨ÎŞÂÛ³õÊ¼¶àÉÙ£¬¶¼µ÷ÕûÎª1£©
+            //é‡ç½®ç›®æ ‡æ•°ï¼ˆæ— è®ºåˆå§‹å¤šå°‘ï¼Œéƒ½è°ƒæ•´ä¸º1ï¼‰
             penetration = 1;
-            //ÖØÖÃÄ¿±êÕóÓª
+            //é‡ç½®ç›®æ ‡é˜µè¥
             targetFaction = Faction.enemy;
-            //ÖØÖÃ¾­¹ıµÄÅö×²Ìå
+            //é‡ç½®ç»è¿‡çš„ç¢°æ’ä½“
             touchedColliders.Clear();
-            //ÖØÖÃÉËº¦À´Ô´
+            //é‡ç½®ä¼¤å®³æ¥æº
             //origin = Player.main;
 
 
-            //Ö±½Ó·µ»Ø£¬²»Ö´ĞĞºóĞøµÄÏú»Ù²Ù×÷
+            //ç›´æ¥è¿”å›ï¼Œä¸æ‰§è¡Œåç»­çš„é”€æ¯æ“ä½œ
             return;
         }
 

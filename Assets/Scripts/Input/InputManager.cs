@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +6,12 @@ public class InputManager : PlayerComponent
 {
     int horizontalMoveLastFrame = 0;
 
-    //Ã¿´ÎUpdateµ÷ÓÃ£¬»ñÈ¡ÊäÈëÊı¾İ
+    //æ¯æ¬¡Updateè°ƒç”¨ï¼Œè·å–è¾“å…¥æ•°æ®
     public override void RefreshUpdate()
     {
 
-        //¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªË®Æ½ÒÆ¶¯ÊäÈë¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
-        //AD¼üÍ¬Ê±°´ÏÂÊ±£¬ÒÔ×îºó°´ÏÂµÄ¼üÎª×¼£¬±£Ö¤Íæ¼ÒÒÆ¶¯²»Í£¶Ù
+        //â€”â€”â€”â€”â€”â€”â€”â€”æ°´å¹³ç§»åŠ¨è¾“å…¥â€”â€”â€”â€”â€”â€”â€”â€”
+        //ADé”®åŒæ—¶æŒ‰ä¸‹æ—¶ï¼Œä»¥æœ€åæŒ‰ä¸‹çš„é”®ä¸ºå‡†ï¼Œä¿è¯ç©å®¶ç§»åŠ¨ä¸åœé¡¿
         if (Input.GetKeyDown(KeyCode.A))
         {
             horizontalMoveLastFrame = -1;
@@ -41,10 +41,10 @@ public class InputManager : PlayerComponent
             }
         }
         input.horizontalMove = horizontalMoveLastFrame;
-        //¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªË®Æ½ÒÆ¶¯ÊäÈë¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+        //â€”â€”â€”â€”â€”â€”â€”â€”æ°´å¹³ç§»åŠ¨è¾“å…¥â€”â€”â€”â€”â€”â€”â€”â€”
 
 
-        //¶¯×÷ÊäÈë
+        //åŠ¨ä½œè¾“å…¥
         input.jump = Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W);
         input.jumpDown = Input.GetKeyDown(KeyCode.S);
         input.dash = Input.GetKeyDown(KeyCode.LeftShift);

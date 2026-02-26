@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -13,22 +13,22 @@ public class EnemyMove : CharacterMove
     public float move = 0;
     public override void RefreshFixedUpdate()
     {
-        //Ç¿ÖÆÒÆ¶¯Ïà¹Ø´úÂëÔÚCharacterMoveÖĞ´¦Àí
+        //å¼ºåˆ¶ç§»åŠ¨ç›¸å…³ä»£ç åœ¨CharacterMoveä¸­å¤„ç†
         base.RefreshFixedUpdate();
 
         bool canMove = true;
 
-        //ÅĞ¶ÏÊÇ·ñÓĞ¶¯×÷ÆÁ±Î
+        //åˆ¤æ–­æ˜¯å¦æœ‰åŠ¨ä½œå±è”½
         if (Owner.IsIgnore(ActionIgnoreTag.Move))
             canMove = false;
-        //AIµÄĞĞÎªÂß¼­²»Í¬£¬Ç¿ÖÆÒÆ¶¯ÓÀÔ¶ÓÅÏÈÓÚÆÕÍ¨ÒÆ¶¯
+        //AIçš„è¡Œä¸ºé€»è¾‘ä¸åŒï¼Œå¼ºåˆ¶ç§»åŠ¨æ°¸è¿œä¼˜å…ˆäºæ™®é€šç§»åŠ¨
         if (IsForcedMoving)
             canMove = false;
-        //AIÔÚ¿ÕÖĞÍêÈ«ÎŞ·¨ĞĞ¶¯
+        //AIåœ¨ç©ºä¸­å®Œå…¨æ— æ³•è¡ŒåŠ¨
         if (!Owner.IsOnGround)
             canMove = false;
 
-        //¸ù¾İµ±Ç°µÄÒÆ¶¯×´Ì¬£¬»ñÈ¡ÒÆ¶¯ÊäÈë
+        //æ ¹æ®å½“å‰çš„ç§»åŠ¨çŠ¶æ€ï¼Œè·å–ç§»åŠ¨è¾“å…¥
         int moveInput = 0;
         if (Owner.MoveState != EnemyMoveState.Hold)
         {
@@ -41,14 +41,14 @@ public class EnemyMove : CharacterMove
         }
 
 
-        //»ñÈ¡µ±Ç°ËÙ¶È
+        //è·å–å½“å‰é€Ÿåº¦
         Vector2 velocity = Velocity;
 
-        //ÅöÇ½Ê±²»ÄÜ¼ÌĞø³¯Ç½µÄ·½ÏòÒÆ¶¯
+        //ç¢°å¢™æ—¶ä¸èƒ½ç»§ç»­æœå¢™çš„æ–¹å‘ç§»åŠ¨
         if (Owner.IsFacingWall && Owner.Direction * moveInput > 0)
             moveInput = 0;
 
-        //ÊÇ·ñ·´Ïò£¬·´ÏòÔòÖ´ĞĞ×ªÏò¶¯»­£¬Ìø¹ıËùÓĞºóĞø¶¯×÷
+        //æ˜¯å¦åå‘ï¼Œåå‘åˆ™æ‰§è¡Œè½¬å‘åŠ¨ç”»ï¼Œè·³è¿‡æ‰€æœ‰åç»­åŠ¨ä½œ
         bool isReversing = moveInput * Owner.Direction < -0;
         if (isReversing && canMove)
         {
@@ -61,7 +61,7 @@ public class EnemyMove : CharacterMove
         else
             velocity.x = Mathf.MoveTowards(velocity.x, moveInput * moveSpeed * Owner.LocalTimeScale, FixedFrameInterval * moveAcceleration);
 
-        //¶¯»­
+        //åŠ¨ç”»
         bool isMove = Mathf.Abs(velocity.x) > 0.1f || moveInput != 0;
         Owner.Animator.SetBool("Is Move", isMove && canMove);
 
@@ -80,13 +80,13 @@ public class EnemyMove : CharacterMove
     {
         int direction = Owner.Direction;
 
-        //ÉèÖÃ³¯Ïò²¢²¥·Å×ªÏò¶¯»­£¬µ«ÊÇ×ªÏò¶¼ÓĞÑÓ³Ù
-        Owner.SetDirection(-direction); //ÏÈÉèÖÃ¶¯»­»ú³¯Ïò
-        Owner.SetDirection(0);          //È»ºóÉèÖÃÕıÔÚ×ªÏòÖĞ
+        //è®¾ç½®æœå‘å¹¶æ’­æ”¾è½¬å‘åŠ¨ç”»ï¼Œä½†æ˜¯è½¬å‘éƒ½æœ‰å»¶è¿Ÿ
+        Owner.SetDirection(-direction); //å…ˆè®¾ç½®åŠ¨ç”»æœºæœå‘
+        Owner.SetDirection(0);          //ç„¶åè®¾ç½®æ­£åœ¨è½¬å‘ä¸­
         Owner.Animator.Play("Turn", 0, 0);
         Owner.AddIgnore(turnTime, ActionIgnoreTag.Move);
 
-        //µÈ´ı×ªÏò½áÊø
+        //ç­‰å¾…è½¬å‘ç»“æŸ
         yield return new WaitForSeconds(turnTime);
         Owner.SetDirection(-direction);
 

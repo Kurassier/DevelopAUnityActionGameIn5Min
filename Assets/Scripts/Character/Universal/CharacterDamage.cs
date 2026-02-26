@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,17 +12,17 @@ public class CharacterDamage : CharacterComponent
             case ImpactType.None:
                 break;
             default:
-                //´ò¶ÏËùÓĞĞĞ¶¯
+                //æ‰“æ–­æ‰€æœ‰è¡ŒåŠ¨
                 Owner.Interrupt();
 
-                //»ñÈ¡³å»÷·½Ïò
+                //è·å–å†²å‡»æ–¹å‘
                 Vector2 direction = damage.impulseVector;
                 if (damage.impulseType == ImpulseType.Centrifugal)
                     direction = Owner.ChestPosition - damage.impulseVector;
-                //ĞŞ¸Ä³¯Ïò£¬È»ºó±»»÷ÍË
+                //ä¿®æ”¹æœå‘ï¼Œç„¶åè¢«å‡»é€€
                 Owner.SetDirection(-direction.x);
                 Owner.ForceMove(hitRepel);
-                //²¥·Å¶¯»­£¬ÉèÖÃ¶¯×÷ºöÂÔ
+                //æ’­æ”¾åŠ¨ç”»ï¼Œè®¾ç½®åŠ¨ä½œå¿½ç•¥
                 Owner.Animator.SetTrigger("Hit");
                 Owner.AddIgnore(hitRepel.length, ActionIgnoreTag.All);
                 break;

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class PlayerStateSensor : CharacterStateSensor
     {
         Owner.characterState.isFacingWall = wallProbe.IsTouchingLayers(LayerMask.GetMask("Ground"));
 
-        //Èç¹û´¦ÓÚ´©Ô½Æ½Ì¨µÄ×´Ì¬£¬µØÃæ¼ì²â²»¼ì²âÆ½Ì¨
+        //å¦‚æœå¤„äºç©¿è¶Šå¹³å°çš„çŠ¶æ€ï¼Œåœ°é¢æ£€æµ‹ä¸æ£€æµ‹å¹³å°
         if (((Player)Owner).CanPenetratePlatform)
             Owner.characterState.isOnGround = groundProbe.IsTouchingLayers(LayerMask.GetMask("Ground"));
         else

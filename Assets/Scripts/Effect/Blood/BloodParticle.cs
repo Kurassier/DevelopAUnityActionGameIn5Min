@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,20 +23,20 @@ public class BloodParticle : MonoBehaviour
     {
         t += Time.deltaTime;
 
-        //¸ù¾ÝtÑ¡Ôñ¶ÔÓ¦µÄÍ¼Æ¬
+        //æ ¹æ®té€‰æ‹©å¯¹åº”çš„å›¾ç‰‡
         int spriteIndex = Mathf.Clamp((int)(t * sprites.Length / existTime), 0, sprites.Length - 1);
         renderer.sprite = sprites[spriteIndex];
-        //¸ù¾ÝtÑ¡Ôñ¶ÔÓ¦µÄÑÕÉ«
+        //æ ¹æ®té€‰æ‹©å¯¹åº”çš„é¢œè‰²
         Color color = Color.Lerp(startColor, endColor, Mathf.Clamp01(t / existTime));
         renderer.color = color;
 
-        //Ä£ÄâÖØÁ¦£¬±£³ÖÁ£×ÓÊ¼ÖÕ³¯ÏòÔË¶¯·½Ïò
+        //æ¨¡æ‹Ÿé‡åŠ›ï¼Œä¿æŒç²’å­å§‹ç»ˆæœå‘è¿åŠ¨æ–¹å‘
         velocity -= new Vector2(0, 10 * Time.deltaTime);
         float angle = Mathf.Atan2(velocity.y, velocity.x);
         transform.position += (Vector3)velocity * Time.deltaTime;
         transform.rotation = Quaternion.Euler(0, 0, angle * 180 / Mathf.PI);
 
-        //ÓÃÉäÏß¼ì²âÊÇ·ñÅö×²µ½µØÐÎ
+        //ç”¨å°„çº¿æ£€æµ‹æ˜¯å¦ç¢°æ’žåˆ°åœ°å½¢
         RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, velocity.normalized, velocity.magnitude * (1.5f * Time.deltaTime),
             LayerMask.GetMask("Ground", "Wall", "Platform"));
         if (raycastHit)
@@ -45,7 +45,7 @@ public class BloodParticle : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //³¬Ê±Ôò×Ô»Ù
+        //è¶…æ—¶åˆ™è‡ªæ¯
         if (t >= existTime + 0.2f)
         {
             Destroy(gameObject);

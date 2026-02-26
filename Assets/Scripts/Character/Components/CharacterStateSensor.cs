@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +27,7 @@ public class CharacterStateSensor : CharacterComponent
     //        if (groundCheck == null)
     //            groundCheck = transform.Find("Collide Checks").Find("Ground Check").GetComponent<Collider2D>();
     //        if (groundCheck == null)
-    //            Debug.LogError("µØÃæ¼ì²âÆ÷²»´æÔÚ£¡");
+    //            Debug.LogError("åœ°é¢æ£€æµ‹å™¨ä¸å­˜åœ¨ï¼");
     //        return groundCheck;
     //    }
     //}
@@ -38,7 +38,7 @@ public class CharacterStateSensor : CharacterComponent
     //        if (wallCheck == null)
     //            wallCheck = transform.Find("Collide Checks").Find("Wall Check").GetComponent<Collider2D>();
     //        if (wallCheck == null)
-    //            Debug.LogError("Ç½¼ì²âÆ÷²»´æÔÚ£¡");
+    //            Debug.LogError("å¢™æ£€æµ‹å™¨ä¸å­˜åœ¨ï¼");
     //        return wallCheck;
     //    }
     //}
@@ -49,7 +49,7 @@ public class CharacterStateSensor : CharacterComponent
     //        if (edgeCheck == null)
     //            edgeCheck = transform.Find("Collide Checks").Find("Edge Check").GetComponent<Collider2D>();
     //        if (edgeCheck == null)
-    //            Debug.LogError("±ßÔµ¼ì²âÆ÷²»´æÔÚ£¡");
+    //            Debug.LogError("è¾¹ç¼˜æ£€æµ‹å™¨ä¸å­˜åœ¨ï¼");
     //        return edgeCheck;
     //    }
     //}

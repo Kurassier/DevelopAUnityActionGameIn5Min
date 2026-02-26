@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,22 +21,22 @@ public class BloodParticleGenerator : Singleton<BloodParticleGenerator>
 
     public void GenerateBloodOnBackground(Vector3 position)
     {
-        //Í¨¹ıĞ¡·ù¶ÈËæ»úÒ»Ğ©Î»ÖÃºÍĞı×ª²ÎÊı£¬ÈÃĞ§¹û¸ü¶àÑù
-        //Ëæ»úÎ»ÖÃ
+        //é€šè¿‡å°å¹…åº¦éšæœºä¸€äº›ä½ç½®å’Œæ—‹è½¬å‚æ•°ï¼Œè®©æ•ˆæœæ›´å¤šæ ·
+        //éšæœºä½ç½®
         position += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.5f, 0.5f), 0) * 3;
-        //Ëæ»ú½Ç¶È
+        //éšæœºè§’åº¦
         float angle = Random.Range(-20f, 20f);
         Vector2 size = new Vector2(Random.Range(0.8f, 1.2f), Random.Range(0.8f, 1.2f));
-        //Ëæ»úÑ¡Ò»¸ö·½Ïò£¬-1»ò1
+        //éšæœºé€‰ä¸€ä¸ªæ–¹å‘ï¼Œ-1æˆ–1
         int direction = Random.Range(-1, 1) * 2 - 1;
 
-        //Éú³ÉÎïÌå
+        //ç”Ÿæˆç‰©ä½“
         GameObject blood = Instantiate(bloodOnBackground, position + new Vector3(0, 0, -0.6f), Quaternion.Euler(0, 0, angle), transform);
-        //ÉèÖÃ·½Ïò
+        //è®¾ç½®æ–¹å‘
         if (direction == -1) size.x *= -1;
         blood.transform.localScale = new Vector3(size.x, size.y, 1);
 
-        //ÉèÖÃÑªÒºÍ¼Æ¬£¨´ÓÔ¤ÉèÊı×éÀïËæ»úÌôÒ»ÕÅ£©
+        //è®¾ç½®è¡€æ¶²å›¾ç‰‡ï¼ˆä»é¢„è®¾æ•°ç»„é‡ŒéšæœºæŒ‘ä¸€å¼ ï¼‰
         Sprite sprite = null;
         sprite = bloodsOnBackground[Random.Range(0, bloodsOnBackground.Length)];
         blood.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -44,13 +44,13 @@ public class BloodParticleGenerator : Singleton<BloodParticleGenerator>
     public void GenerateBloodOnWall(Vector3 position, Vector2 normal)
     {
         Vector2 size = new Vector2(1, 1);
-        //¸ù¾İ·¨Ïß·½Ïò£¬¼ÆËãĞı×ª½Ç¶È
+        //æ ¹æ®æ³•çº¿æ–¹å‘ï¼Œè®¡ç®—æ—‹è½¬è§’åº¦
         float angle = Mathf.Atan2(normal.y, normal.x) * 180 / Mathf.PI - 90;
 
-        //Éú³ÉÎïÌå£¨ĞèÒªÒ»Ğ¡¶ÎZÖáÎ»ÒÆ£¬±£Ö¤ÔÚµØĞÎÇ°·½£©
+        //ç”Ÿæˆç‰©ä½“ï¼ˆéœ€è¦ä¸€å°æ®µZè½´ä½ç§»ï¼Œä¿è¯åœ¨åœ°å½¢å‰æ–¹ï¼‰
         GameObject blood = Instantiate(bloodOnWall, position + new Vector3(0, 0, -0.6f), Quaternion.Euler(0, 0, angle), transform);
 
-        //ÉèÖÃÑªÒºÍ¼Æ¬£¨´ÓÔ¤ÉèÊı×éÀïËæ»úÌôÒ»ÕÅ£©
+        //è®¾ç½®è¡€æ¶²å›¾ç‰‡ï¼ˆä»é¢„è®¾æ•°ç»„é‡ŒéšæœºæŒ‘ä¸€å¼ ï¼‰
         Sprite sprite = null;
         sprite = bloodsOnWall[Random.Range(0, bloodsOnWall.Length)];
         blood.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -61,7 +61,7 @@ public class BloodParticleGenerator : Singleton<BloodParticleGenerator>
         Vector2 size = new Vector2(1, 1);
         float angle = Mathf.Atan2(velocity.y, velocity.x) * 180 / Mathf.PI;
 
-        //Éú³ÉÎïÌå
+        //ç”Ÿæˆç‰©ä½“
         GameObject blood = Instantiate(bloodParticle, position, Quaternion.Euler(0, 0, angle), transform);
         BloodParticle particle = blood.GetComponent<BloodParticle>();
         particle.velocity = velocity;

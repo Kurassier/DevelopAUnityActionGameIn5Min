@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +6,13 @@ using UnityEngine;
 public enum EnemyMoveState { Chase, Hold, Flee }
 public class Enemy : Character
 {
-    //¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ªµĞÈËAIÏà¹Ø±äÁ¿¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª
+    //â€”â€”â€”â€”â€”â€”â€”â€”æ•ŒäººAIç›¸å…³å˜é‡â€”â€”â€”â€”â€”â€”â€”â€”
     [ShowInInspector, ReadOnly] public Character Target;
     [ShowInInspector, ReadOnly] public Vector2 TargetPosition;
     [ShowInInspector, ReadOnly] public EnemyMoveState MoveState;
-    //µÈ´ı¼ÆÊ±Æ÷£¬ÓÃÓÚÈÃµĞÈË¶ÌÔİ·¢´ô£¬¸ø¶¯×÷Ò»Ğ©ÏÎ½Ó¿Õ¼ä
+    //ç­‰å¾…è®¡æ—¶å™¨ï¼Œç”¨äºè®©æ•ŒäººçŸ­æš‚å‘å‘†ï¼Œç»™åŠ¨ä½œä¸€äº›è¡”æ¥ç©ºé—´
     public Timer waitTimer;
-    //¶¯×÷ÁĞ±í£¬»áËæ»ú´ÓÖĞ³éÈ¡Ò»¸ö×÷ÎªÏÂÒ»¸ö¶¯×÷
+    //åŠ¨ä½œåˆ—è¡¨ï¼Œä¼šéšæœºä»ä¸­æŠ½å–ä¸€ä¸ªä½œä¸ºä¸‹ä¸€ä¸ªåŠ¨ä½œ
     public EnemyAction[] actions = new EnemyAction[0];
     public EnemyAction actionCurrent = null;
 
@@ -30,15 +30,15 @@ public class Enemy : Character
     {
         base.FixedUpdate();
 
-        //ĞĞ¶¯AI
+        //è¡ŒåŠ¨AI
         if (waitTimer.TimeOut && !IsIgnore(ActionIgnoreTag.Action)) 
         {
-            //Ë÷µĞ
+            //ç´¢æ•Œ
             Searching();
 
             if (actionCurrent == null && Target != null)
             {
-                //Ñ¡Ôñ¶¯×÷
+                //é€‰æ‹©åŠ¨ä½œ
                 SelectAction();
             }
             else if (Target == null)
@@ -48,7 +48,7 @@ public class Enemy : Character
 
         }
 
-        //ÒÆ¶¯
+        //ç§»åŠ¨
         moveComponent.RefreshFixedUpdate();
     }
 
@@ -68,7 +68,7 @@ public class Enemy : Character
         waitTimer.Set(0.5f);
     }
 
-    //×î»ù´¡µÄË÷µĞÂß¼­
+    //æœ€åŸºç¡€çš„ç´¢æ•Œé€»è¾‘
     void Searching()
     {
         Character target = Player.Instance;
@@ -78,8 +78,8 @@ public class Enemy : Character
         bool isPlayerBelowEnemy = target.RootPosition.y + 1 < RootPosition.y;
         bool isAtBack = direction.x * Direction <= 0;
 
-        //µĞÈË·¢ÏÖÄ¿±êµÄÌõ¼ş£ºÈç¹ûÒÑ¾­Ëø¶¨Ä¿±ê£¬Ö»Òª²»¶ªÊÓÏß¾ÍÄÜ¼ÌĞøË÷µĞ£»·ñÔòĞèÒªÓĞÊÓÏß£¬²¢ÇÒÍæ¼Ò²»ÔÚµĞÈË±³ºó£¨·ÀÖ¹µĞÈË·¢ÏÖÍæ¼Òºó×ªÉí¾Í¶ªÊ§Ä¿±ê£©
-        //µ±Íæ¼ÒÎ»ÖÃ±ÈµĞÈË¸üµÍÊ±£¬Ò»¶¨²»ÔÚÍ¬Ò»Æ½Ì¨ÉÏ£¬ËùÒÔ×Ô¶¯ÍÑËø
+        //æ•Œäººå‘ç°ç›®æ ‡çš„æ¡ä»¶ï¼šå¦‚æœå·²ç»é”å®šç›®æ ‡ï¼Œåªè¦ä¸ä¸¢è§†çº¿å°±èƒ½ç»§ç»­ç´¢æ•Œï¼›å¦åˆ™éœ€è¦æœ‰è§†çº¿ï¼Œå¹¶ä¸”ç©å®¶ä¸åœ¨æ•ŒäººèƒŒåï¼ˆé˜²æ­¢æ•Œäººå‘ç°ç©å®¶åè½¬èº«å°±ä¸¢å¤±ç›®æ ‡ï¼‰
+        //å½“ç©å®¶ä½ç½®æ¯”æ•Œäººæ›´ä½æ—¶ï¼Œä¸€å®šä¸åœ¨åŒä¸€å¹³å°ä¸Šï¼Œæ‰€ä»¥è‡ªåŠ¨è„±é”
         bool targetLocked = (hasTarget && hasLOS && !isPlayerBelowEnemy) || (hasLOS && !isPlayerBelowEnemy && !isAtBack);
 
 

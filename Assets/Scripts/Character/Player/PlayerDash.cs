@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,19 +31,19 @@ public class PlayerDash : PlayerComponent
 
     void Dash()
     {
-        //动作屏蔽
+        //鍔ㄤ綔灞忚斀
         Owner.AddIgnore(DashCD, ActionIgnoreTag.Dash);
         Owner.AddIgnore(0.2f, ActionIgnoreTag.All);
         Owner.AddIgnore(0.2f, ActionIgnoreTag.Move);
 
-        //播放动画
+        //鎾斁鍔ㄧ敾
         if (Owner.characterState.isOnGround)
             Owner.Animator.Play("Slide", 0, 0);
         else
             Owner.Animator.Play("Dash", 0, 0);
 
 
-        //强制移动
+        //寮哄埗绉诲姩
         Owner.ForceMove(displacementData);
     }
 }

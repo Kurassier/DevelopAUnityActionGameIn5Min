@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +37,7 @@ public class PlayerJump : PlayerComponent
     {
         VerticalMove();
 
-        //ÀëµØ¿íÈİ
+        //ç¦»åœ°å®½å®¹
         groundLeaveTimer -= FixedFrameInterval;
         if (Owner.characterState.isOnGround)
             groundLeaveTimer = 0.1f;
@@ -65,17 +65,17 @@ public class PlayerJump : PlayerComponent
 
     void Jump()
     {
-        //¶¯×÷ÆÁ±Î
+        //åŠ¨ä½œå±è”½
         Owner.AddIgnore(JumpCD, ActionIgnoreTag.Jump);
         Owner.AddIgnore(0.2f, ActionIgnoreTag.All);
 
-        //¶¯»­£¨¸¡¿Õ×´Ì¬£©
+        //åŠ¨ç”»ï¼ˆæµ®ç©ºçŠ¶æ€ï¼‰
         Owner.Animator.Play("Jump Up", 0, 0);
 
-        //ÍË³öÇ¿ÖÆÒÆ¶¯
+        //é€€å‡ºå¼ºåˆ¶ç§»åŠ¨
         Owner.moveComponent.QuitForcedMoving();
 
-        //´©Ô½Æ½Ì¨
+        //ç©¿è¶Šå¹³å°
         Owner.SetPlatformPenetrateTime(0.1f);
 
         Vector2 velocity = Owner.Velocity;
@@ -87,11 +87,11 @@ public class PlayerJump : PlayerComponent
 
     void JumpDown()
     {
-        //¶¯×÷ÆÁ±Î
+        //åŠ¨ä½œå±è”½
         Owner.AddIgnore(JumpCD, ActionIgnoreTag.Jump);
         Owner.AddIgnore(0.2f, ActionIgnoreTag.All);
 
-        //´©Ô½Æ½Ì¨
+        //ç©¿è¶Šå¹³å°
         Owner.SetPlatformPenetrateTime(0.13f);
 
         Vector2 velocity = Owner.Velocity;
@@ -103,7 +103,7 @@ public class PlayerJump : PlayerComponent
 
     void PenetratePlatform()
     {
-        //´©Ô½Æ½Ì¨
+        //ç©¿è¶Šå¹³å°
         Owner.SetPlatformPenetrateTime(0.5f);
     }
 
@@ -127,16 +127,16 @@ public class PlayerJump : PlayerComponent
         }
         velocity.y -= gravity * FixedFrameInterval * Owner.LocalTimeScale;
 
-        //ÏŞÖÆ×î´óÏÂÂäËÙ¶È
+        //é™åˆ¶æœ€å¤§ä¸‹è½é€Ÿåº¦
         velocity.y = Mathf.Max(velocity.y, -MaxFallilngSpeed * Owner.LocalTimeScale);
 
         Owner.Velocity = velocity;
 
-        //¶¯»­£¨¸¡¿Õ×´Ì¬£©
+        //åŠ¨ç”»ï¼ˆæµ®ç©ºçŠ¶æ€ï¼‰
         Owner.Animator.SetBool("Is On Ground", Owner.characterState.isOnGround);
         Owner.Animator.SetBool("Is Move Up", velocity.y > 0);
 
-        //ÅĞ¶ÏÊÇ·ñÀëµØ
+        //åˆ¤æ–­æ˜¯å¦ç¦»åœ°
         if (isOnGroundLastFrame && !Owner.IsOnGround)
         {
             if (velocity.y > 4)
@@ -150,7 +150,7 @@ public class PlayerJump : PlayerComponent
         }
 
 
-        //¼ÇÂ¼ÊÇ·ñÔÚµØÃæ
+        //è®°å½•æ˜¯å¦åœ¨åœ°é¢
         isOnGroundLastFrame = Owner.IsOnGround;
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,13 +48,13 @@ public class UnitManager : MonoBehaviour
 
     public static void RemoveUnit(Character victim)
     {
-        //´ÓÁĞ±íÖĞÒÆ³ı½ÇÉ«
+        //ä»åˆ—è¡¨ä¸­ç§»é™¤è§’è‰²
         if (main.allCharacters.Remove(victim))
         {
-            //¼ÆÊıÆ÷
+            //è®¡æ•°å™¨
             if (victim.Faction == Faction.enemy)
                 main.enemyRemain--;
-            //´¥·¢»÷É±ÊÂ¼ş
+            //è§¦å‘å‡»æ€äº‹ä»¶
             if (main.UnitDestroyEvent != null)
                 main.UnitDestroyEvent(victim);
 

@@ -1,4 +1,4 @@
-
+ï»¿
 //using System.Collections;
 //using System.Collections.Generic;
 //using Unity.VisualScripting;
@@ -32,11 +32,11 @@
 
 //        soundSources = new List<AudioSource>();
 
-//        //ÐÂ½¨¼¸¸ö¿ÕµÄÒôÐ§²¥·ÅÆ÷
+//        //æ–°å»ºå‡ ä¸ªç©ºçš„éŸ³æ•ˆæ’­æ”¾å™¨
 //        for (int i = 0; i < 5; i++)
 //            NewSoundSource();
 
-//        //²¥·Å±³¾°ÒôÀÖ
+//        //æ’­æ”¾èƒŒæ™¯éŸ³ä¹
 //        PlayMusic(musicName, 0.3f, 1f);
 //    }
 
@@ -103,11 +103,11 @@
 
 //        if (clip != null)
 //        {
-//            //ËÑË÷ÓÐÎÞ¿ÕÏÐµÄÒôÐ§²¥·ÅÆ÷
+//            //æœç´¢æœ‰æ— ç©ºé—²çš„éŸ³æ•ˆæ’­æ”¾å™¨
 //            AudioSource soundSource = null;
 //            foreach (AudioSource source in main.soundSources)
 //                if (!source.isPlaying) soundSource = source;
-//            //Ã»ÓÐÔòÐÂÔö²¥·ÅÆ÷
+//            //æ²¡æœ‰åˆ™æ–°å¢žæ’­æ”¾å™¨
 //            if (soundSource == null)
 //                soundSource = main.NewSoundSource();
 
@@ -137,17 +137,17 @@
 //            {
 //                if (musicSource.clip == clip)
 //                {
-//                    //Èç¹ûÕýÔÚ²¥·Åµ±Ç°BGM£¬²»ÔÙÖØÐÂ²¥·Å
+//                    //å¦‚æžœæ­£åœ¨æ’­æ”¾å½“å‰BGMï¼Œä¸å†é‡æ–°æ’­æ”¾
 //                    needRestart = false;
 //                }
 //                else
 //                {
-//                    //Èç¹ûÕýÔÚ²¥·ÅBGM£¬µ«ÊÇBGM²»¶Ô£¬ÔòÖØÐÂÉèÖÃBGM
+//                    //å¦‚æžœæ­£åœ¨æ’­æ”¾BGMï¼Œä½†æ˜¯BGMä¸å¯¹ï¼Œåˆ™é‡æ–°è®¾ç½®BGM
 //                }
 //            }
 //            else
 //            {
-//                //Èç¹û²¥·ÅÆ÷²»´æÔÚ£¬ÔòÏÈÉú³É²¥·ÅÆ÷ÔÙÉèÖÃBGM
+//                //å¦‚æžœæ’­æ”¾å™¨ä¸å­˜åœ¨ï¼Œåˆ™å…ˆç”Ÿæˆæ’­æ”¾å™¨å†è®¾ç½®BGM
 //                NewMusicSource();
 //            }
 

@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,34 +32,34 @@ public class CharacterMove : CharacterComponent
         return currentDisplacement == displacement;
     }
 
-    // Ã¿Ö¡¸üĞÂÎ»ÒÆÂß¼­
+    // æ¯å¸§æ›´æ–°ä½ç§»é€»è¾‘
     public override void RefreshFixedUpdate()
     {
-        //Ç¿ÖÆÒÆ¶¯
+        //å¼ºåˆ¶ç§»åŠ¨
         if (IsForcedMoving)
         {
             Vector2 velocity = Velocity;
             currentDisplacementTime += FixedFrameInterval;
 
-            // ¼ÆËãÎ»ÒÆ½ø¶ÈµÄ±ÈÀı
+            // è®¡ç®—ä½ç§»è¿›åº¦çš„æ¯”ä¾‹
             float progressRate = currentDisplacementTime / currentDisplacement.length;
 
-            // Èç¹ûÎ»ÒÆÍê³É£¬Çå¿Õµ±Ç°Î»ÒÆ²¢·µ»Ø
+            // å¦‚æœä½ç§»å®Œæˆï¼Œæ¸…ç©ºå½“å‰ä½ç§»å¹¶è¿”å›
             if (progressRate >= 1f)
             {
                 currentDisplacement = null;
                 return;
             }
 
-            // ¸ù¾İ½ø¶È±ÈÀı´ÓËÙ¶ÈÇúÏßÖĞ»ñÈ¡ËÙ¶ÈÒò×Ó
+            // æ ¹æ®è¿›åº¦æ¯”ä¾‹ä»é€Ÿåº¦æ›²çº¿ä¸­è·å–é€Ÿåº¦å› å­
             float speedFactor = currentDisplacement.speedCurve.Evaluate(progressRate);
-            // ¸üĞÂ¸ÕÌåµÄË®Æ½ËÙ¶È
+            // æ›´æ–°åˆšä½“çš„æ°´å¹³é€Ÿåº¦
             velocity.x = Owner.Direction * currentDisplacement.maxSpeed * speedFactor * Owner.LocalTimeScale;
 
-            //Ò»°ãÀ´Ëµ£¬Ç¿ÖÆÒÆ¶¯Ê±²»Ó¦¸ÃÊÜµ½ÖØÁ¦Ó°Ïì£¨ÀıÈç¿ÕÖĞ³å´Ì£©
+            //ä¸€èˆ¬æ¥è¯´ï¼Œå¼ºåˆ¶ç§»åŠ¨æ—¶ä¸åº”è¯¥å—åˆ°é‡åŠ›å½±å“ï¼ˆä¾‹å¦‚ç©ºä¸­å†²åˆºï¼‰
             velocity.y = 0;
 
-            Velocity = velocity * TimeScale; // Ó¦ÓÃĞÂµÄËÙ¶È
+            Velocity = velocity * TimeScale; // åº”ç”¨æ–°çš„é€Ÿåº¦
         }
     }
 }

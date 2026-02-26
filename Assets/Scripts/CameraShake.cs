@@ -1,4 +1,4 @@
-using Cinemachine;
+ï»¿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -10,9 +10,9 @@ public class CameraShake : Singleton<CameraShake>
     public static float shakeFactor = 0.8f;
 
 
-    //Ïà»úËø¶¨¼ÆÊ±Æ÷
+    //ç›¸æœºé”å®šè®¡æ—¶å™¨
     Timer CameraLockTimer;
-    //µ±Ç°Ïà»úµÄËùÓĞ¶¶¶¯Ğ§¹û
+    //å½“å‰ç›¸æœºçš„æ‰€æœ‰æŠ–åŠ¨æ•ˆæœ
     List<ShakeInfo> shakeInfos;
 
     protected override void Awake()
@@ -45,12 +45,12 @@ public class CameraShake : Singleton<CameraShake>
         shakeOffset = offset;
     }
 
-    //Ïà»ú¶¶¶¯
+    //ç›¸æœºæŠ–åŠ¨
     [SerializeField] Vector2 shakeOffset = new Vector2(0, 0);
     public static Vector2 ShakeOffset
     {
-        //³¡¾°ÖĞ²»Ö¹´æÔÚÒ»¸öĞéÄâÏà»ú£¬µ«ÊÇËùÓĞÏà»úµÄ¶¶¶¯¶¼Í³Ò»´ÓÕâÀï»ñÈ¡
-        //´Ë´¦½ö¼ÆËãÆ«ÒÆÁ¿£¬µ«ÊÇ²»¾ßÌåÓ¦ÓÃµ½Ïà»úÉÏ
+        //åœºæ™¯ä¸­ä¸æ­¢å­˜åœ¨ä¸€ä¸ªè™šæ‹Ÿç›¸æœºï¼Œä½†æ˜¯æ‰€æœ‰ç›¸æœºçš„æŠ–åŠ¨éƒ½ç»Ÿä¸€ä»è¿™é‡Œè·å–
+        //æ­¤å¤„ä»…è®¡ç®—åç§»é‡ï¼Œä½†æ˜¯ä¸å…·ä½“åº”ç”¨åˆ°ç›¸æœºä¸Š
         get => Instance.shakeOffset * shakeFactor;
     }
 
@@ -63,7 +63,7 @@ public class CameraShake : Singleton<CameraShake>
 
     public static void ShakeRandom(float magnitude, int repeat, float time)
     {
-        //·ù¶È¡¢´ÎÊıºÍÊ±¼ä¶¼²»ÄÜÎª0
+        //å¹…åº¦ã€æ¬¡æ•°å’Œæ—¶é—´éƒ½ä¸èƒ½ä¸º0
         if (magnitude == 0 || repeat == 0 || time <= 0)
             return;
         float angle = Random.Range(0, 2 * Mathf.PI);
@@ -73,13 +73,13 @@ public class CameraShake : Singleton<CameraShake>
     Coroutine shakeCoroutine = null;
     public static void Shake(float magnitude, int repeat, float time, Vector2 dir)
     {
-        //Èç¹ûÔÚËø¶¨×´Ì¬£¬²»ÔÊĞíĞÂ¼Ó¶¶¶¯£¬µ«ÊÇÒÑÓĞµÄ¶¶¶¯¿ÉÒÔ¼ÌĞø
+        //å¦‚æœåœ¨é”å®šçŠ¶æ€ï¼Œä¸å…è®¸æ–°åŠ æŠ–åŠ¨ï¼Œä½†æ˜¯å·²æœ‰çš„æŠ–åŠ¨å¯ä»¥ç»§ç»­
         if (Instance.CameraLockTimer.InTime)
             return;
-        //·ù¶È¡¢´ÎÊıºÍÊ±¼ä¶¼²»ÄÜÎª0
+        //å¹…åº¦ã€æ¬¡æ•°å’Œæ—¶é—´éƒ½ä¸èƒ½ä¸º0
         if (magnitude == 0 || repeat == 0 || time <= 0)
             return;
-        //Ìí¼ÓĞÂµÄ¶¶¶¯ĞÅÏ¢
+        //æ·»åŠ æ–°çš„æŠ–åŠ¨ä¿¡æ¯
         ShakeInfo info = new ShakeInfo(magnitude, repeat, time, dir);
         Instance.shakeInfos.Add(info);
     }
