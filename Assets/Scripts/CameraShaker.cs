@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class CameraShake : Singleton<CameraShake>
+public class CameraShaker
+    : Singleton<CameraShaker>
 {
     public static float shakeFactor = 0.8f;
 
@@ -69,7 +70,6 @@ public class CameraShake : Singleton<CameraShake>
         Vector2 dir = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         Shake(magnitude, repeat, time, dir);
     }
-    Coroutine shakeCoroutine = null;
     public static void Shake(float magnitude, int repeat, float time, Vector2 dir)
     {
         //如果在锁定状态，不允许新加抖动，但是已有的抖动可以继续

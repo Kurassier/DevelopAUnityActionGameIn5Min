@@ -45,5 +45,8 @@ public class PlayerDash : PlayerComponent
 
         //强制移动
         Owner.ForceMove(displacementData);
+
+        //无敌帧
+        Owner.SetInvincible(0.2f);
     }
 }

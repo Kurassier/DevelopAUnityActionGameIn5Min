@@ -36,12 +36,8 @@ public class Hitbox : MonoBehaviour
     public int cameraShakeRepeat = 0;
     //相机抖动时长
     public float cameraShakeTime = 0;
-    //帧冻结时间倍率
-    public float frameFreezeFactor = 1;
     //帧冻结时长
     public float frameFreezeLength = 0;
-    //帧冻结回复时长
-    public float frameFreezeRecoverLength = 0;
     #endregion
 
 
@@ -150,9 +146,9 @@ public class Hitbox : MonoBehaviour
     protected virtual void PlayHitEffect()
     {
         //帧冻结
-        TimeManager.FrameFreeze(frameFreezeLength, frameFreezeRecoverLength, frameFreezeFactor);
+        TimeManager.FrameFreeze(frameFreezeLength);
         //镜头晃动
-        CameraShake.Shake(cameraShakeMagnitude, cameraShakeRepeat, cameraShakeTime, ImpactDirection);
+        CameraShaker.Shake(cameraShakeMagnitude, cameraShakeRepeat, cameraShakeTime, ImpactDirection);
     }
 
 

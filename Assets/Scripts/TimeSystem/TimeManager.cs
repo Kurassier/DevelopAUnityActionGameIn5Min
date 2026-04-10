@@ -203,28 +203,23 @@ public class TimeManager : Singleton<TimeManager>
     //    }
     //}
 
-    public static void FrameFreeze(float fullTime = 0.2f, float recoverTime = 0.1f, float minScale = 0.4f)
+    public static void FrameFreeze(float fullTime)
     {
         if (Instance.currentFrameFreezeCoroutine != null)
             Instance.StopCoroutine(Instance.currentFrameFreezeCoroutine);
-        Instance.StartCoroutine(Instance.FrameFreezeCoroutine(fullTime, recoverTime, minScale));
+        Instance.currentFrameFreezeCoroutine = Instance.StartCoroutine(Instance.FrameFreezeCoroutine(fullTime));
     }
 
     Coroutine currentFrameFreezeCoroutine = null;
-    IEnumerator FrameFreezeCoroutine(float fullTime = 0.2f, float recoverTime = 0.1f, float minScale = 0.4f)
+    IEnumerator FrameFreezeCoroutine(float fullTime)
     {
         for (float t = 0; t < fullTime; t += Time.unscaledDeltaTime)
         {
-            if (t < fullTime - recoverTime)
-            {
-                frameFreezeScale = minScale;
-            }
-            else
-            {
-                frameFreezeScale = (t - fullTime + recoverTime) / recoverTime * (1 - minScale) + minScale;
-            }
+            frameFreezeScale = 0;
+            ResetGlobalScale();
             yield return null;
         }
         frameFreezeScale = 1;
+        ResetGlobalScale();
     }
 }

@@ -39,7 +39,7 @@ public class Character : MonoBehaviour, iDamagable
 
     //————————朝向————————
 
-    //————————血量————————
+    //————————血量伤害————————
     float healthMax = 10;
     public float HealthMax { get => healthMax; }
 
@@ -53,7 +53,16 @@ public class Character : MonoBehaviour, iDamagable
             if (healthCurrent > HealthMax) healthCurrent = HealthMax;
         }
     }
-    //————————血量————————
+
+    [SerializeField] float invincibleTimer = -1;
+    [SerializeField] float blockTimer = -1;
+    public void SetInvincible(float time) => invincibleTimer = Mathf.Max(invincibleTimer, time);
+    public bool IsInvincible => invincibleTimer > 0;
+    public void SetBlock(float time) => blockTimer = Mathf.Max(blockTimer, time);
+    public bool IsBlock => blockTimer > 0;
+
+
+    //————————血量伤害————————
 
 
     //————————时间相关————————
@@ -117,11 +126,11 @@ public class Character : MonoBehaviour, iDamagable
     {
         get
         {
-            return moveComponent.Velocity / TimeScale;
+            return moveComponent.Velocity / LocalTimeScale;
         }
         set
         {
-            moveComponent.Velocity = value * TimeScale;
+            moveComponent.Velocity = value * LocalTimeScale;
         }
     }
 
@@ -259,7 +268,7 @@ public class Character : MonoBehaviour, iDamagable
         get => (transform.position + new Vector3(0, 0.1f, 0));
     }
     [ShowInInspector]
-    public virtual Vector2 ChestPosition => (transform.position + new Vector3(0, 1.8f, 0));
+    public virtual Vector2 ChestPosition => (transform.position + new Vector3(0, 1.2f, 0));
 
     [ShowInInspector]
     public Vector2 HitboxCenter => ChestPosition;
@@ -305,6 +314,9 @@ public class Character : MonoBehaviour, iDamagable
 
     protected virtual void FixedUpdate()
     {
+        //刷新无敌计时器
+        invincibleTimer -= FrameInterval;
+        blockTimer -= FrameInterval;
         //刷新角色动作忽略
         RefreshActionIgnore();
         //刷新角色状态
@@ -324,7 +336,12 @@ public class Character : MonoBehaviour, iDamagable
     //————————伤害分区————————
     public HitResult Hit(Damage damage)
     {
-        return damageComponent.Hit(damage);
+        if (IsBlock)
+            return new HitResult(0, HitResultType.Blocked);
+        else if (IsInvincible)
+            return new HitResult(0, HitResultType.Miss);
+        else
+            return damageComponent.Hit(damage);
     }
 
     //————————伤害分区————————

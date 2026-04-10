@@ -12,6 +12,7 @@ public class Player : Character
     [PropertyOrder(5)] public PlayerJump jumpComponent;
     [PropertyOrder(5)] public PlayerDash dashComponent;
     [PropertyOrder(5)] public PlayerAttack attackComponent;
+    [PropertyOrder(5)] public PlayerCamera cameraComponent;
 
 
 
@@ -39,17 +40,18 @@ public class Player : Character
         jumpComponent.Init();
         dashComponent.Init();
         attackComponent.Init();
+        cameraComponent.Init();
     }
 
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            float scale = 3;
-            LocalTimeScale = scale;
-            TimeManager.SlowScale = 1 / scale;
-            Time.fixedDeltaTime = 1 / (60 * scale);
-        }
+        //if (Input.GetKeyDown(KeyCode.Mouse1))
+        //{
+        //    float scale = 3;
+        //    LocalTimeScale = scale;
+        //    TimeManager.SlowScale = 1 / scale;
+        //    Time.fixedDeltaTime = 1 / (60 * scale);
+        //}
 
         base.Update();
 
@@ -64,6 +66,7 @@ public class Player : Character
     {
         base.LateUpdate();
 
+        cameraComponent.RefreshUpdate();
     }
 
     protected override void FixedUpdate()

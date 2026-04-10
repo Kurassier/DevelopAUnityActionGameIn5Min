@@ -53,12 +53,10 @@ MonoBehaviour:
   impulse: 0
   impactType: 3
   impulseType: 0
-  cameraShakeMagnitude: 2
+  cameraShakeMagnitude: 0.5
   cameraShakeRepeat: 4
-  cameraShakeTime: 0.3
-  frameFreezeFactor: 0
+  cameraShakeTime: 0.2
   frameFreezeLength: 0.1
-  frameFreezeRecoverLength: 0
   targetFaction: 1
   origin: {fileID: 0}
   touchedColliders: []

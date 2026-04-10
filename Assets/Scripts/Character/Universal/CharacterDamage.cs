@@ -19,6 +19,7 @@ public class CharacterDamage : CharacterComponent
                 Vector2 direction = damage.impulseVector;
                 if (damage.impulseType == ImpulseType.Centrifugal)
                     direction = Owner.ChestPosition - damage.impulseVector;
+
                 //修改朝向，然后被击退
                 Owner.SetDirection(-direction.x);
                 Owner.ForceMove(hitRepel);
