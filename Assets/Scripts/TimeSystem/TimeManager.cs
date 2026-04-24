@@ -70,26 +70,12 @@ public class TimeManager : Singleton<TimeManager>
     public static double TimeFromSceneBegun => TimeFromSceneBegun;
 
 
-    public double timeFixedSinceLevelLoadAsDouble;
-    public bool isLastFrameFixed = false;
+    public static double timeFixedSinceLevelLoadAsDouble;
 
     /// <summary>
-    /// 只能在Update或LateUpdate中调用，返回当前帧与上一次Fixed或普通Update的时间间隔。
+    /// 只能在Update或LateUpdate中调用，返回当前帧与上一次FixedUpdate的时间间隔。
     /// </summary>
-    public float IntervalBetweenUpdateOrFixed
-    {
-        get
-        {
-            if (isLastFrameFixed)
-            {
-                return (float)(Time.timeSinceLevelLoadAsDouble - timeFixedSinceLevelLoadAsDouble);
-            }
-            else
-            {
-                return Time.deltaTime;
-            }
-        }
-    }
+    public float TimeAfterLastFixedUpdate => (float)(Time.timeSinceLevelLoadAsDouble - timeFixedSinceLevelLoadAsDouble);
 
     public List<Timer> timerListForInspector;
 
@@ -127,7 +113,6 @@ public class TimeManager : Singleton<TimeManager>
         }
         //ClearObsoleteTimers();
 
-        isLastFrameFixed = false;
     }
 
     private void FixedUpdate()
@@ -156,8 +141,6 @@ public class TimeManager : Singleton<TimeManager>
 
         timeFromSceneBegun += Time.fixedTimeAsDouble;//每FixedUpdate帧增加一次ticks
 
-
-        isLastFrameFixed = true;
         timeFixedSinceLevelLoadAsDouble = Time.timeSinceLevelLoadAsDouble;
     }
 

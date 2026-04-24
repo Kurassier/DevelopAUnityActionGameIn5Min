@@ -17,7 +17,7 @@ public class PlayerCamera : PlayerComponent
     public CinemachineVirtualCamera virtualCamera;
 
     Vector3 positionLastFrame;
-    Transform followTransform;
+    [SerializeField] Transform followTransform;
     [SerializeField] float forwardRangeCurrent = 0;
     float forwardCameraTimer = 0;
     Direction lastFrameDirection = 0;
@@ -25,7 +25,6 @@ public class PlayerCamera : PlayerComponent
     public override void Init()
     {
         base.Init();
-        followTransform = transform.parent;
         transform.parent = null;
         transform.position = followTransform.position + localOffset;
     }
@@ -35,12 +34,9 @@ public class PlayerCamera : PlayerComponent
         //相机参数
         float widthHeightRatio = (float)Screen.width / (float)Screen.height;
         float height = virtualCamera.m_Lens.OrthographicSize;
-        float width = height * widthHeightRatio;
+        float width = height * widthHeightRatio;        
 
-        //————————死区————————
-        float followSpeed = damping != 0 ? 1 / damping : float.MaxValue;
-
-
+        //目标位置与当前位置
         Vector3 targetPosition = followTransform.position + localOffset;
         Vector3 position = positionLastFrame;
 
@@ -57,6 +53,9 @@ public class PlayerCamera : PlayerComponent
             forwardRangeCurrent = Mathf.MoveTowards(forwardRangeCurrent, forwardRange * lastFrameDirection, forwardSpeed * Time.deltaTime);
         targetPosition += new Vector3(forwardRangeCurrent, 0, 0);
 
+        // 阻尼系数转换为跟随速度
+        float followSpeed = damping != 0 ? 1 / damping : float.MaxValue;
+        // 死区边界
         if (targetPosition.x - position.x > deadzoneX * width)
             position.x = Mathf.Lerp(position.x, targetPosition.x - deadzoneX * width, followSpeed * Time.deltaTime);
         if (targetPosition.x - position.x < -deadzoneX * width)
@@ -72,8 +71,6 @@ public class PlayerCamera : PlayerComponent
 
         //记录当前帧相机的世界坐标
         positionLastFrame = transform.position;
-        //————————死区————————
-
 
         //最后添加相机抖动，以免影响死区
         transform.localPosition += (Vector3)CameraShaker.ShakeOffset;

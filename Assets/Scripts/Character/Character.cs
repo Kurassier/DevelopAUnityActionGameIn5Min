@@ -13,6 +13,7 @@ public class Character : MonoBehaviour, iDamagable
     //组件
     [PropertyOrder(5)] public CharacterMove moveComponent;
     [PropertyOrder(5)] public CharacterDamage damageComponent;
+    [PropertyOrder(5)] public CharacterAnimator animeConponent;
 
     //————————阵营————————
     [SerializeField] Faction faction;
@@ -300,16 +301,16 @@ public class Character : MonoBehaviour, iDamagable
         if (countByManager)
             UnitManager.AddUnit(this);
 
-        //设置计时器
+        animeConponent.Init();
     }
 
     protected virtual void Update()
     {
-
+        //刷新角色动画
+        animeConponent.RefreshUpdate();
     }
     protected virtual void LateUpdate()
     {
-
     }
 
     protected virtual void FixedUpdate()
@@ -321,6 +322,8 @@ public class Character : MonoBehaviour, iDamagable
         RefreshActionIgnore();
         //刷新角色状态
         characterStateSensor.RefreshFixedUpdate();
+        //刷新角色动画
+        animeConponent.RefreshFixedUpdate();
     }
     public virtual void Interrupt()
     {

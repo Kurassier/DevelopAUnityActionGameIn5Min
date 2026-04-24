@@ -1063,7 +1063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &448760124
 Transform:
   m_ObjectHideFlags: 0
@@ -2482,6 +2482,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 939619770}
+  - component: {fileID: 939619773}
   - component: {fileID: 939619772}
   - component: {fileID: 939619771}
   m_Layer: 13
@@ -2579,6 +2580,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &939619773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939619769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d909e41da0d2d804abef443b32f01feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableInterpolate: 1
+  physicalPositionLastFrame: {x: 0, y: 0, z: 0}
+  physicalIntervalTime: 0
+  offsetZ: 0
 --- !u!1 &950568097
 GameObject:
   m_ObjectHideFlags: 0
@@ -3116,6 +3133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1294588259}
+  - component: {fileID: 1294588262}
   - component: {fileID: 1294588261}
   - component: {fileID: 1294588260}
   m_Layer: 13
@@ -3213,6 +3231,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1294588262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294588258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d909e41da0d2d804abef443b32f01feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableInterpolate: 1
+  physicalPositionLastFrame: {x: 0, y: 0, z: 0}
+  physicalIntervalTime: 0
+  offsetZ: 0
 --- !u!1 &1317608669
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,14 +4275,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f598934aec0324b8d62fd72d3b7651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localOffset: {x: 0, y: 5, z: -100}
+  localOffset: {x: 0, y: 4, z: -100}
   forwardRange: 5
   forwardSpeed: 3
   forwardCameraTime: 1
   deadzoneX: 0.2
-  deadzoneY: 0.2
+  deadzoneY: 0.1
   damping: 0.1
   virtualCamera: {fileID: 1656945161}
+  followTransform: {fileID: 1294588259}
   forwardRangeCurrent: 0
 --- !u!1 &1659808534
 GameObject:
@@ -4422,6 +4457,7 @@ MonoBehaviour:
   countByManager: 1
   moveComponent: {fileID: 1893440105}
   damageComponent: {fileID: 882723521}
+  animeConponent: {fileID: 939619773}
   faction: 1
   invincibleTimer: -1
   blockTimer: -1
@@ -5000,8 +5036,6 @@ MonoBehaviour:
   pauseScale: 1
   slowScale: 1
   debugScale: 1
-  timeFixedSinceLevelLoadAsDouble: 0
-  isLastFrameFixed: 0
   timerListForInspector: []
 --- !u!1 &1785682172
 GameObject:
@@ -5249,7 +5283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1848388684
 Transform:
   m_ObjectHideFlags: 0
@@ -5447,6 +5481,7 @@ MonoBehaviour:
   countByManager: 1
   moveComponent: {fileID: 1973770007}
   damageComponent: {fileID: 515106420}
+  animeConponent: {fileID: 1294588262}
   faction: 0
   invincibleTimer: -1
   blockTimer: -1
