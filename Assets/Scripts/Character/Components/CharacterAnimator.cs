@@ -23,12 +23,11 @@ public class CharacterAnimator : CharacterComponent
 
         // 帧间位置插值
         Vector3 physicalPosition = Owner.RootPosition;
-        Vector3 physicalVelocity = (physicalPosition - physicalPositionLastFrame) / physicalIntervalTime;
+        float timeRatio = TimeManager.Instance.TimeAfterLastFixedUpdate / physicalIntervalTime;
         if (enableInterpolate)
-            transform.position = physicalPositionLastFrame + physicalVelocity * TimeManager.Instance.TimeAfterLastFixedUpdate + new Vector3(0, 0, offsetZ);
+            transform.position = Vector3.Lerp(physicalPositionLastFrame, physicalPosition, timeRatio) + new Vector3(0, 0, offsetZ);
 
     }
-
     public override void RefreshFixedUpdate()
     {
         base.RefreshFixedUpdate();

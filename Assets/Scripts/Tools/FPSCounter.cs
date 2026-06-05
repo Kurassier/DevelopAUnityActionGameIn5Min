@@ -32,7 +32,7 @@ public class FPSCounter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (TimeManager.DebugScale > 0.5f)
-                TimeManager.DebugScale = 0.1f;
+                TimeManager.DebugScale = 0.05f;
             else
                 TimeManager.DebugScale = 1;
         }

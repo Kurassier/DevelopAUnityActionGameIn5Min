@@ -7,13 +7,16 @@ public class PlayerAttack : PlayerComponent
     public Displacement attackLightDisplacement;
     public Displacement attackHeavyDisplacement;
 
-    public float attackPreinput = -1;
-    public float attackHeavyChargeTimer = 0;
+
     const float attackHeavyChargeTime = 0.3f;
+    const int attackComboCount = 2;
 
-    public int attackLightCombo = 0;
+    public int attackCombo = 0;
+    public float attackLightPreinput = -1;
+    public float attackLightActionTimer = 0;
+    public float attackHeavyChargeTimer = 0;
 
-    public float attackActionTimer = 0;
+
 
     public GameObject attackLightHitbox;
     public GameObject attackHeavyHitbox;
@@ -23,10 +26,10 @@ public class PlayerAttack : PlayerComponent
     public override void Init()
     {
         base.Init();
-        attackPreinput = -1;
+        attackCombo = 0;
+        attackLightPreinput = -1;
+        attackLightActionTimer = 0;
         attackHeavyChargeTimer = 0;
-        attackLightCombo = 0;
-        attackActionTimer = 0;
     }
 
     public override void RefreshFixedUpdate()
@@ -34,9 +37,9 @@ public class PlayerAttack : PlayerComponent
         base.RefreshFixedUpdate();
 
         //攻击预输入比较特殊，按照游戏时长计算，不受时间速度影响，主要是为了做连段
-        attackPreinput -= FixedFrameInterval;
+        attackLightPreinput -= FixedFrameInterval;
         //攻击动作计时器，主要是为了在攻击动作中保存连段和重击蓄力时长
-        attackActionTimer -= FixedFrameInterval;
+        attackLightActionTimer -= FixedFrameInterval;
 
         //角色地面和空中攻击需要完全分开
         // 角色在地面
@@ -46,12 +49,19 @@ public class PlayerAttack : PlayerComponent
             if (!Owner.IsIgnore(ActionIgnoreTag.Action))
             {
                 //轻击判定
-                if (attackPreinput > 0)
+                if (attackLightPreinput > 0)
                 {
-                    attackPreinput = 0;
-                    AttackLight();
+                    attackLightPreinput = 0;
+                    AttackLight(attackCombo);
+                    attackCombo++;
                 }
-                //重击蓄力计时
+                //轻击连段重置
+                if (attackLightActionTimer <= 0)
+                {
+                    attackCombo = 0;
+                }
+
+                //蓄力重击计时
                 if (input.attackHeavy)
                 {
                     attackHeavyChargeTimer += FixedFrameInterval;
@@ -64,19 +74,15 @@ public class PlayerAttack : PlayerComponent
                 {
                     attackHeavyChargeTimer = 0;
                 }
-                //连段重置
-                if (attackActionTimer <= 0)
-                {
-                    attackLightCombo = 0;
-                }
+
             }
             //如果屏蔽攻击动作（在其他动作中，也可能是攻击动作）
             else
             {
                 //如果不在攻击动作中，重置连段和重击蓄力计时器
-                if (attackActionTimer <= 0)
+                if (attackLightActionTimer <= 0)
                 {
-                    attackLightCombo = 0;
+                    attackCombo = 0;
                     attackHeavyChargeTimer = 0;
                 }
                 else
@@ -93,15 +99,15 @@ public class PlayerAttack : PlayerComponent
         else
         {
             //在空中会打断攻击动画，并且退出攻击位移
-            if (attackActionTimer > 0)
+            if (attackLightActionTimer > 0)
             {
-                attackActionTimer = 0;
+                attackLightActionTimer = 0;
                 if (Owner.ForceMoveIsEqual(attackLightDisplacement) || Owner.ForceMoveIsEqual(attackHeavyDisplacement))
                 {
                     Owner.QuitForceMove();
                 }
             }
-            attackLightCombo = 0;
+            attackCombo = 0;
             attackHeavyChargeTimer = 0;
         }
     }
@@ -111,10 +117,10 @@ public class PlayerAttack : PlayerComponent
 
         if (input.attackLight)
         {
-            attackPreinput = 0.2f;
+            attackLightPreinput = 0.2f;
             //攻击动作中的连段判定加长
-            if (attackActionTimer > 0)
-                attackPreinput = 0.5f;
+            if (attackLightActionTimer > 0)
+                attackLightPreinput = 0.5f;
         }
     }
 
@@ -125,28 +131,28 @@ public class PlayerAttack : PlayerComponent
         if (attackHitboxCurrrnt != null) Destroy(attackHitboxCurrrnt.gameObject);
     }
 
-    void AttackLight()
+    void AttackLight(int combo)
     {
-        //Debug.Log("Attack Light");
+        //连段截断
+        combo = combo % attackComboCount;
 
         //动作屏蔽
         Owner.AddIgnore(0.5f, ActionIgnoreTag.All);
 
         //动画播放
-        string attackAnimName = "Attack L" + (attackLightCombo % 2 + 1);
+        string attackAnimName = "Attack L" + (combo + 1);
         Owner.Animator.Play(attackAnimName, 0, 0);
 
         //强制移动
         Owner.ForceMove(attackLightDisplacement);
 
         //启动攻击持续计时器，在此期间保存连段和重击蓄力时长
-        attackActionTimer = 1.0f;
+        attackLightActionTimer = 1.0f;
 
         //生成攻击碰撞体
         attackHitboxCurrrnt = Hitbox.GenerateHitbox(attackLightHitbox, Owner, transform, 5, Owner.RootPosition);
 
-        //连段增加
-        attackLightCombo++;
+        //Debug.Log("Attack Light");
     }
 
     void AttackHeavy()
@@ -163,5 +169,8 @@ public class PlayerAttack : PlayerComponent
 
         //生成攻击碰撞体
         attackHitboxCurrrnt = Hitbox.GenerateHitbox(attackHeavyHitbox, Owner, transform, 5, Owner.RootPosition);
+
+
+        //Debug.Log("Attack Heavy");
     }
 }
